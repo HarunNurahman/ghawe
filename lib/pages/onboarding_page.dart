@@ -100,58 +100,56 @@ class _OnBoardingPageState extends State<OnBoardingPage> {
               'assets/images/undraw_Interview.png',
               width: 300,
             ),
-            footer: Center(
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: [
-                  TextButton(
-                    onPressed: () {},
-                    style: TextButton.styleFrom(
-                      padding: const EdgeInsets.symmetric(
-                        vertical: 8,
-                        horizontal: 40,
-                      ),
-                      backgroundColor: kPrimaryColor,
-                      splashFactory: NoSplash.splashFactory,
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(defaultRadius),
-                      ),
+            footer: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: [
+                TextButton(
+                  onPressed: () {},
+                  style: TextButton.styleFrom(
+                    padding: const EdgeInsets.symmetric(
+                      vertical: 8,
+                      horizontal: 40,
                     ),
-                    child: Text(
-                      'Masuk',
-                      style: whiteTextStyle.copyWith(
-                        fontSize: 16,
-                        fontWeight: semiBold,
+                    backgroundColor: kPrimaryColor,
+                    splashFactory: NoSplash.splashFactory,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(defaultRadius),
+                    ),
+                  ),
+                  child: Text(
+                    'Masuk',
+                    style: whiteTextStyle.copyWith(
+                      fontSize: 16,
+                      fontWeight: semiBold,
+                    ),
+                  ),
+                ),
+                TextButton(
+                  onPressed: () {},
+                  style: TextButton.styleFrom(
+                    padding: const EdgeInsets.symmetric(
+                      vertical: 8,
+                      horizontal: 40,
+                    ),
+                    backgroundColor: kWhiteColor,
+                    splashFactory: NoSplash.splashFactory,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(defaultRadius),
+                      side: BorderSide(
+                        width: 2,
+                        color: kPrimaryColor,
                       ),
                     ),
                   ),
-                  TextButton(
-                    onPressed: () {},
-                    style: TextButton.styleFrom(
-                      padding: const EdgeInsets.symmetric(
-                        vertical: 8,
-                        horizontal: 40,
-                      ),
-                      backgroundColor: kWhiteColor,
-                      splashFactory: NoSplash.splashFactory,
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(defaultRadius),
-                        side: BorderSide(
-                          width: 2,
-                          color: kPrimaryColor,
-                        ),
-                      ),
+                  child: Text(
+                    'Daftar',
+                    style: primaryTextStyle.copyWith(
+                      fontSize: 16,
+                      fontWeight: semiBold,
                     ),
-                    child: Text(
-                      'Daftar',
-                      style: primaryTextStyle.copyWith(
-                        fontSize: 16,
-                        fontWeight: semiBold,
-                      ),
-                    ),
-                  )
-                ],
-              ),
+                  ),
+                )
+              ],
             ),
           )
         ],

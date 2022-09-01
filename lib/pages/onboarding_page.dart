@@ -136,7 +136,7 @@ class _OnBoardingPageState extends State<OnBoardingPage> {
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(defaultRadius),
                       side: BorderSide(
-                        width: 2,
+                        width: 1,
                         color: kPrimaryColor,
                       ),
                     ),

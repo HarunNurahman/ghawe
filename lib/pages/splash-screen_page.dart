@@ -1,6 +1,7 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
-import 'package:flutter/src/foundation/key.dart';
-import 'package:flutter/src/widgets/framework.dart';
+import 'package:get/get.dart';
 import 'package:ghawe/shared/style.dart';
 
 class SplashScreenPage extends StatefulWidget {
@@ -12,12 +13,22 @@ class SplashScreenPage extends StatefulWidget {
 
 class _SplashScreenPageState extends State<SplashScreenPage> {
   @override
+  void initState() {
+    Timer(
+      const Duration(seconds: 3),
+      () => Get.offAllNamed('/on-boarding'),
+    );
+    super.initState();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: kPrimaryColor,
       body: Center(
-        child: Text(
-          'Splash Screen',
-          style: blackTextStyle,
+        child: Image.asset(
+          'assets/images/app_logo_white.png',
+          width: 240,
         ),
       ),
     );

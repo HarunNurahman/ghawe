@@ -1,4 +1,5 @@
 import 'package:get/get.dart';
+import 'package:ghawe/pages/onboarding_page.dart';
 import 'package:ghawe/pages/splash-screen_page.dart';
 
 class PageRoutes {
@@ -7,6 +8,11 @@ class PageRoutes {
     GetPage(
       name: '/',
       page: () => SplashScreenPage(),
+    ),
+    // Route for On Boarding Page
+    GetPage(
+      name: '/on-boarding',
+      page: () => OnBoardingPage(),
     )
   ];
 }

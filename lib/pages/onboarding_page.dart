@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:ghawe/shared/style.dart';
 import 'package:introduction_screen/introduction_screen.dart';
 
@@ -12,6 +13,59 @@ class OnBoardingPage extends StatefulWidget {
 class _OnBoardingPageState extends State<OnBoardingPage> {
   @override
   Widget build(BuildContext context) {
+    // Sign-in button widget
+    Widget _signInButton() {
+      return GestureDetector(
+        onTap: () => Get.toNamed('/sign-in'),
+        child: Container(
+          width: 140,
+          height: 50,
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(defaultRadius),
+            color: kPrimaryColor,
+          ),
+          child: Center(
+            child: Text(
+              'Masuk'.toUpperCase(),
+              style: whiteTextStyle.copyWith(
+                fontSize: 16,
+                fontWeight: semiBold,
+              ),
+            ),
+          ),
+        ),
+      );
+    }
+
+    // Sign-up button widget
+    Widget _signUpButton() {
+      return GestureDetector(
+        onTap: () => Get.toNamed('/sign-up'),
+        child: Container(
+          width: 140,
+          height: 50,
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(defaultRadius),
+            border: Border.all(
+              width: 1,
+              color: kPrimaryColor,
+            ),
+            color: kWhiteColor,
+          ),
+          child: Center(
+            child: Text(
+              'Daftar'.toUpperCase(),
+              style: primaryTextStyle.copyWith(
+                fontSize: 16,
+                fontWeight: semiBold,
+              ),
+            ),
+          ),
+        ),
+      );
+    }
+
+    // Decoration for PageViewModel
     final pageDecoration = PageDecoration(
       titleTextStyle: blackTextStyle.copyWith(
         fontSize: 20,
@@ -24,8 +78,9 @@ class _OnBoardingPageState extends State<OnBoardingPage> {
       footerPadding: EdgeInsets.symmetric(vertical: defaultMargin + 20),
     );
 
-    return Scaffold(
-      body: IntroductionScreen(
+    // Onboarding UI widget
+    Widget _onBoardingScreen() {
+      return IntroductionScreen(
         globalBackgroundColor: kWhiteColor,
         showBackButton: false,
         showNextButton: true,
@@ -103,50 +158,17 @@ class _OnBoardingPageState extends State<OnBoardingPage> {
             footer: Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
-                Container(
-                  width: 140,
-                  height: 50,
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(defaultRadius),
-                    color: kPrimaryColor,
-                  ),
-                  child: Center(
-                    child: Text(
-                      'Masuk'.toUpperCase(),
-                      style: whiteTextStyle.copyWith(
-                        fontSize: 16,
-                        fontWeight: semiBold,
-                      ),
-                    ),
-                  ),
-                ),
-                Container(
-                  width: 140,
-                  height: 50,
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(defaultRadius),
-                    border: Border.all(
-                      width: 1,
-                      color: kPrimaryColor,
-                    ),
-                    color: kWhiteColor,
-                    
-                  ),
-                  child: Center(
-                    child: Text(
-                      'Daftar'.toUpperCase(),
-                      style: primaryTextStyle.copyWith(
-                        fontSize: 16,
-                        fontWeight: semiBold,
-                      ),
-                    ),
-                  ),
-                ),
+                _signInButton(),
+                _signUpButton(),
               ],
             ),
           )
         ],
-      ),
+      );
+    }
+
+    return Scaffold(
+      body: _onBoardingScreen(),
     );
   }
 }

@@ -16,7 +16,7 @@ class _SplashScreenPageState extends State<SplashScreenPage> {
   void initState() {
     Timer(
       const Duration(seconds: 3),
-      () => Get.offAllNamed('/on-boarding'),
+      () => Get.offAndToNamed('/on-boarding'),
     );
     super.initState();
   }

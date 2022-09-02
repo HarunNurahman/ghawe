@@ -103,52 +103,45 @@ class _OnBoardingPageState extends State<OnBoardingPage> {
             footer: Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
-                TextButton(
-                  onPressed: () {},
-                  style: TextButton.styleFrom(
-                    padding: const EdgeInsets.symmetric(
-                      vertical: 8,
-                      horizontal: 40,
-                    ),
-                    backgroundColor: kPrimaryColor,
-                    splashFactory: NoSplash.splashFactory,
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(defaultRadius),
-                    ),
+                Container(
+                  width: 140,
+                  height: 50,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(defaultRadius),
+                    color: kPrimaryColor,
                   ),
-                  child: Text(
-                    'Masuk',
-                    style: whiteTextStyle.copyWith(
-                      fontSize: 16,
-                      fontWeight: semiBold,
-                    ),
-                  ),
-                ),
-                TextButton(
-                  onPressed: () {},
-                  style: TextButton.styleFrom(
-                    padding: const EdgeInsets.symmetric(
-                      vertical: 8,
-                      horizontal: 40,
-                    ),
-                    backgroundColor: kWhiteColor,
-                    splashFactory: NoSplash.splashFactory,
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(defaultRadius),
-                      side: BorderSide(
-                        width: 1,
-                        color: kPrimaryColor,
+                  child: Center(
+                    child: Text(
+                      'Masuk'.toUpperCase(),
+                      style: whiteTextStyle.copyWith(
+                        fontSize: 16,
+                        fontWeight: semiBold,
                       ),
                     ),
                   ),
-                  child: Text(
-                    'Daftar',
-                    style: primaryTextStyle.copyWith(
-                      fontSize: 16,
-                      fontWeight: semiBold,
+                ),
+                Container(
+                  width: 140,
+                  height: 50,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(defaultRadius),
+                    border: Border.all(
+                      width: 1,
+                      color: kPrimaryColor,
+                    ),
+                    color: kWhiteColor,
+                    
+                  ),
+                  child: Center(
+                    child: Text(
+                      'Daftar'.toUpperCase(),
+                      style: primaryTextStyle.copyWith(
+                        fontSize: 16,
+                        fontWeight: semiBold,
+                      ),
                     ),
                   ),
-                )
+                ),
               ],
             ),
           )

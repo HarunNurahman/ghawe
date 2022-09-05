@@ -1,6 +1,7 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:ghawe/pages/widgets/custom_button.dart';
 import 'package:ghawe/pages/widgets/custom_text_form_field.dart';
 import 'package:ghawe/shared/style.dart';
 
@@ -95,22 +96,9 @@ class SignInPage extends StatelessWidget {
 
       // Sign in button widget
       Widget _signInButton() {
-        return Container(
-          width: double.infinity,
-          height: 50,
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(defaultRadius + 20),
-            color: kPrimaryColor,
-          ),
-          child: Center(
-            child: Text(
-              'Masuk'.toUpperCase(),
-              style: whiteTextStyle.copyWith(
-                fontSize: 16,
-                fontWeight: semiBold,
-              ),
-            ),
-          ),
+        return CustomButton(
+          title: 'Masuk',
+          onPressed: () {},
         );
       }
 
@@ -182,6 +170,7 @@ class SignInPage extends StatelessWidget {
         );
       }
 
+      // Sign up text button widget
       Widget _signUpTextButton() {
         return Center(
           child: RichText(

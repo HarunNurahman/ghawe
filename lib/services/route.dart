@@ -1,4 +1,5 @@
 import 'package:get/get.dart';
+import 'package:ghawe/pages/forgot-password_page.dart';
 import 'package:ghawe/pages/onboarding_page.dart';
 import 'package:ghawe/pages/sign-in_page.dart';
 import 'package:ghawe/pages/sign-up_page.dart';
@@ -25,6 +26,10 @@ class PageRoutes {
     GetPage(
       name: '/sign-up',
       page: () => SignUpPage(),
+    ),
+    GetPage(
+      name: '/forgot-password',
+      page: () => ForgotPasswordPage(),
     )
   ];
 }

@@ -16,19 +16,20 @@ class CustomButton extends StatelessWidget {
     return Container(
       width: double.infinity,
       height: 50,
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(defaultRadius + 20),
-        color: kPrimaryColor,
-      ),
-      child: Center(
-        child: TextButton(
-          onPressed: onPressed,
-          child: Text(
-            title.toUpperCase(),
-            style: whiteTextStyle.copyWith(
-              fontSize: 16,
-              fontWeight: semiBold,
-            ),
+      
+      child: ElevatedButton(
+        style: ElevatedButton.styleFrom(
+          primary: kPrimaryColor,
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(defaultRadius + 20),
+          ),
+        ),
+        onPressed: onPressed,
+        child: Text(
+          title.toUpperCase(),
+          style: whiteTextStyle.copyWith(
+            fontSize: 16,
+            fontWeight: semiBold,
           ),
         ),
       ),

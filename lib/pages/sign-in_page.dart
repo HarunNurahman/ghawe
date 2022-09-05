@@ -1,6 +1,7 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:ghawe/pages/forgot-password_page.dart';
 import 'package:ghawe/pages/widgets/custom_button.dart';
 import 'package:ghawe/pages/widgets/custom_text_form_field.dart';
 import 'package:ghawe/shared/style.dart';
@@ -74,7 +75,7 @@ class SignInPage extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.end,
           children: [
             GestureDetector(
-              onTap: () => Get.toNamed('/sign-up'),
+              onTap: () => Get.to(ForgotPasswordPage()),
               child: RichText(
                 text: TextSpan(
                   children: [

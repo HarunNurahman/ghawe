@@ -1,3 +1,4 @@
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:ghawe/pages/widgets/custom_text_form_field.dart';
@@ -149,11 +150,61 @@ class SignInPage extends StatelessWidget {
           );
         }
 
+        // row login method button widget
+        Widget _loginMethodButton() {
+          return Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Image.asset(
+                'assets/images/img_login_google.png',
+                width: 48,
+              ),
+              const SizedBox(width: 18),
+              Image.asset(
+                'assets/images/img_login_facebook.png',
+                width: 48,
+              ),
+              const SizedBox(width: 18),
+              Image.asset(
+                'assets/images/img_login_linkedin.png',
+                width: 48,
+              ),
+            ],
+          );
+        }
+
         return Column(
           children: [
             _separator(),
             SizedBox(height: defaultMargin - 8),
+            _loginMethodButton(),
           ],
+        );
+      }
+
+      Widget _signUpTextButton() {
+        return Center(
+          child: RichText(
+            text: TextSpan(
+              text: 'Belum Punya Akun? ',
+              style: blackTextStyle.copyWith(
+                fontSize: 12,
+                fontWeight: light,
+              ),
+              children: [
+                TextSpan(
+                  text: 'Daftar Disini',
+                  style: primaryTextStyle.copyWith(
+                    fontSize: 12,
+                    fontWeight: light,
+                    decoration: TextDecoration.underline,
+                  ),
+                  recognizer: TapGestureRecognizer()
+                    ..onTap = () => Get.toNamed('/sign-up'),
+                ),
+              ],
+            ),
+          ),
         );
       }
 
@@ -169,6 +220,8 @@ class SignInPage extends StatelessWidget {
           _signInButton(),
           SizedBox(height: defaultMargin - 8),
           _loginMethod(),
+          SizedBox(height: defaultMargin),
+          _signUpTextButton(),
         ],
       );
     }

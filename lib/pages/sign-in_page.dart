@@ -101,8 +101,7 @@ class SignInPage extends StatelessWidget {
         return CustomButton(
           title: 'Masuk',
           onPressed: (() {
-            Get.toNamed('/sign-up');
-            print('tapped');
+            Get.to(const EmptyStatePage());
           }),
         );
       }

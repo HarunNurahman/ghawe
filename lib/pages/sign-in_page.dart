@@ -101,7 +101,7 @@ class SignInPage extends StatelessWidget {
         return CustomButton(
           title: 'Masuk',
           onPressed: (() {
-            Get.to(const EmptyStatePage());
+            Get.toNamed('/dashboard');
           }),
         );
       }

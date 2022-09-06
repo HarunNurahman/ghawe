@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:ghawe/pages/home_page.dart';
 import 'package:ghawe/shared/style.dart';
 
 class DashboardPage extends StatelessWidget {
@@ -6,6 +7,12 @@ class DashboardPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+
+    // list page for future
+    Widget _buildContent() {
+      return HomePage();
+    }
+
     // custom widget for bottom navigation bar
     Widget _bottomNavBar() {
       return Align(
@@ -56,12 +63,7 @@ class DashboardPage extends StatelessWidget {
       backgroundColor: kWhiteColor,
       body: Stack(
         children: [
-          Center(
-            child: Text(
-              'Dashboard Page',
-              style: blackTextStyle,
-            ),
-          ),
+          _buildContent(),
           _bottomNavBar(),
         ],
       ),

@@ -2,9 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:ghawe/shared/style.dart';
 
 class HomePage extends StatelessWidget {
-  HomePage({Key? key}) : super(key: key);
-
-  final TextEditingController _searchController = TextEditingController();
+  const HomePage({Key? key}) : super(key: key);
 
   String greeting() {
     var hour = DateTime.now().hour;
@@ -19,11 +17,38 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    // greeting message widget
+    Widget _greeting() {
+      return Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(
+            '${greeting()},',
+            style: blackTextStyle.copyWith(
+              fontSize: 16,
+              fontWeight: medium,
+            ),
+          ),
+          // const SizedBox(height: 4),
+          Text(
+            'Pengguna Baru',
+            overflow: TextOverflow.ellipsis,
+            maxLines: 1,
+            style: blackTextStyle.copyWith(
+              fontSize: 20,
+              fontWeight: semiBold,
+            ),
+          )
+        ],
+      );
+    }
+
     // header widget
     Widget _header() {
       return Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
+          _greeting(),
           // Profile Picture
           CircleAvatar(
             radius: 36,
@@ -39,76 +64,15 @@ class HomePage extends StatelessWidget {
               ),
             ),
           ),
-          // Notification
-          Image.asset(
-            'assets/icons/ic_notification.png',
-            width: 20,
-          )
         ],
       );
     }
 
+    // body content widget
     Widget _body() {
-      // greeting message widget
-      Widget _greeting() {
-        return Text(
-          '${greeting()}, Pengguna',
-          overflow: TextOverflow.ellipsis,
-          maxLines: 1,
-          style: blackTextStyle.copyWith(
-            fontSize: 16,
-            fontWeight: semiBold,
-          ),
-        );
-      }
-
-      // search bar widget
-      Widget _searchBar() {
-        return Row(
-          children: [
-            Container(
-              width: 250,
-              height: 50,
-              child: TextFormField(
-                controller: _searchController,
-                style: blackTextStyle.copyWith(
-                  fontSize: 12,
-                  decoration: TextDecoration.none,
-                ),
-                decoration: InputDecoration(
-                  prefixIcon: Icon(
-                    Icons.search,
-                    color: kGray2Color,
-                  ),
-                  prefixIconColor: kGrayColor,
-                  isDense: true,
-                  hintText: 'Cari Pekerjaan atau Posisi',
-                  hintStyle: gray2TextStyle.copyWith(
-                    fontSize: 12,
-                    fontWeight: light,
-                  ),
-                  border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(defaultRadius),
-                    borderSide: BorderSide(color: kPrimaryColor),
-                  ),
-                  focusedBorder: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(defaultRadius),
-                    borderSide: BorderSide(color: kPrimaryColor),
-                  ),
-                ),
-              ),
-            ),
-          ],
-        );
-      }
-
       return Column(
         crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          _greeting(),
-          const SizedBox(height: 5),
-          _searchBar(),
-        ],
+        children: [],
       );
     }
 

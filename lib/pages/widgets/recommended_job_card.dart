@@ -26,8 +26,8 @@ class RecommendedJobCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       width: 250,
-      margin: const EdgeInsets.only(right: 10),
-      padding: EdgeInsets.all(defaultMargin - 10),
+      margin: const EdgeInsets.only(right: 16),
+      padding: EdgeInsets.all(defaultMargin - 15),
       decoration: BoxDecoration(
         color: kPrimaryColor,
         borderRadius: BorderRadius.circular(defaultRadius + 5),
@@ -39,8 +39,8 @@ class RecommendedJobCard extends StatelessWidget {
             children: [
               // company logo
               Container(
-                width: 36,
-                height: 36,
+                width: 42,
+                height: 42,
                 padding: const EdgeInsets.all(6),
                 decoration: BoxDecoration(
                   color: kWhiteColor,
@@ -62,16 +62,15 @@ class RecommendedJobCard extends StatelessWidget {
                       maxLines: 1,
                       overflow: TextOverflow.ellipsis,
                       style: whiteTextStyle.copyWith(
-                        fontSize: 12,
                         fontWeight: semiBold,
                       ),
                     ),
                     const SizedBox(height: 3),
                     // company
                     Text(
-                      company!.toUpperCase(),
+                      company!,
                       style: whiteTextStyle.copyWith(
-                        fontSize: 10,
+                        fontSize: 12,
                       ),
                     )
                   ],
@@ -88,11 +87,11 @@ class RecommendedJobCard extends StatelessWidget {
                 size: 16,
                 color: kWhiteColor,
               ),
-              const SizedBox(width: 4),
+              const SizedBox(width: 6),
               Text(
                 location!,
                 style: whiteTextStyle.copyWith(
-                  fontSize: 10,
+                  fontSize: 12,
                   fontWeight: medium,
                 ),
               )
@@ -107,7 +106,7 @@ class RecommendedJobCard extends StatelessWidget {
                 size: 16,
                 color: kWhiteColor,
               ),
-              const SizedBox(width: 4),
+              const SizedBox(width: 6),
               Text(
                 NumberFormat.currency(
                   locale: 'id_ID',
@@ -117,7 +116,7 @@ class RecommendedJobCard extends StatelessWidget {
                   salary,
                 ),
                 style: whiteTextStyle.copyWith(
-                  fontSize: 10,
+                  fontSize: 12,
                   fontWeight: medium,
                 ),
               )
@@ -132,11 +131,11 @@ class RecommendedJobCard extends StatelessWidget {
                 size: 16,
                 color: kWhiteColor,
               ),
-              const SizedBox(width: 4),
+              const SizedBox(width: 6),
               Text(
                 experience!,
                 style: whiteTextStyle.copyWith(
-                  fontSize: 10,
+                  fontSize: 12,
                   fontWeight: medium,
                 ),
               )
@@ -190,7 +189,7 @@ class RecommendedJobCard extends StatelessWidget {
                   Text(
                     lastUpdate!,
                     style: whiteTextStyle.copyWith(
-                      fontSize: 8,
+                      fontSize: 10,
                       fontWeight: light,
                     ),
                   )

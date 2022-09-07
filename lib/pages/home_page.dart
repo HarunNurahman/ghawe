@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:ghawe/pages/widgets/recent_job_card.dart';
 import 'package:ghawe/pages/widgets/recommended_job_card.dart';
 import 'package:ghawe/shared/style.dart';
 
@@ -183,12 +184,56 @@ class HomePage extends StatelessWidget {
         );
       }
 
+      // New job list widget
+      Widget _recentPostedJob() {
+        return Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Text(
+                  'Lowongan Terbaru',
+                  style: blackTextStyle.copyWith(
+                    fontSize: 16,
+                    fontWeight: semiBold,
+                  ),
+                ),
+                Text(
+                  'Lihat Semua',
+                  style: primaryTextStyle.copyWith(
+                    fontSize: 10,
+                    fontWeight: light,
+                    decoration: TextDecoration.underline,
+                  ),
+                ),
+              ],
+            ),
+            const SizedBox(height: 8),
+            RecentJobCard(
+              jobtitle: 'Social Media Marketing',
+              company: 'Shopee Indonesia',
+              location: 'Jakarta Pusat',
+              imgUrl: 'assets/images/img_shopee.png',
+            ),
+            RecentJobCard(
+              jobtitle: 'DevOps Engineer',
+              company: 'Grab',
+              location: 'Singapore',
+              imgUrl: 'assets/images/img_grab2.png',
+            ),
+          ],
+        );
+      }
+
       return Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           _upcomingEvent(),
           SizedBox(height: defaultMargin),
-          _recommendedJob()
+          _recommendedJob(),
+          SizedBox(height: defaultMargin),
+          _recentPostedJob(),
         ],
       );
     }
@@ -210,6 +255,7 @@ class HomePage extends StatelessWidget {
                 _header(),
                 SizedBox(height: defaultMargin),
                 _body(),
+                SizedBox(height: defaultMargin),
               ],
             ),
           ),

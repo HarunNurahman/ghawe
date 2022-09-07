@@ -2,11 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:ghawe/shared/style.dart';
 
 class CustomTextFormField extends StatelessWidget {
-  final String title;
-  final String hintText;
-  final bool obsecureText;
-  final TextEditingController controller;
-  final TextInputType inputType;
+  final String? title;
+  final String? hintText;
+  final bool? obsecureText;
+  final TextEditingController? controller;
+  final TextInputType? inputType;
 
   const CustomTextFormField({
     Key? key,
@@ -23,7 +23,7 @@ class CustomTextFormField extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text(
-          title,
+          title!,
           style: blackTextStyle.copyWith(
             fontSize: 16,
             fontWeight: semiBold,
@@ -34,10 +34,13 @@ class CustomTextFormField extends StatelessWidget {
           controller: controller,
           autocorrect: false,
           enableSuggestions: false,
-          obscureText: obsecureText,
+          obscureText: obsecureText!,
           keyboardType: inputType,
           cursorColor: kPrimaryColor,
-          style: blackTextStyle.copyWith(fontSize: 12),
+          style: blackTextStyle.copyWith(
+            fontSize: 12,
+            decoration: TextDecoration.none,
+          ),
           decoration: InputDecoration(
             hintText: hintText,
             hintStyle: blackTextStyle.copyWith(

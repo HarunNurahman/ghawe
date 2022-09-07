@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:ghawe/shared/style.dart';
 
 class CustomButton extends StatelessWidget {
-  final String title;
+  final String? title;
   final Function() onPressed;
 
   const CustomButton({
@@ -16,7 +16,6 @@ class CustomButton extends StatelessWidget {
     return Container(
       width: double.infinity,
       height: 50,
-      
       child: ElevatedButton(
         style: ElevatedButton.styleFrom(
           primary: kPrimaryColor,
@@ -26,7 +25,7 @@ class CustomButton extends StatelessWidget {
         ),
         onPressed: onPressed,
         child: Text(
-          title.toUpperCase(),
+          title!.toUpperCase(),
           style: whiteTextStyle.copyWith(
             fontSize: 16,
             fontWeight: semiBold,

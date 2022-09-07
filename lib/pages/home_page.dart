@@ -2,7 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:ghawe/shared/style.dart';
 
 class HomePage extends StatelessWidget {
-  const HomePage({Key? key}) : super(key: key);
+  HomePage({Key? key}) : super(key: key);
+
+  final TextEditingController _searchController = TextEditingController();
 
   String greeting() {
     var hour = DateTime.now().hour;
@@ -46,14 +48,67 @@ class HomePage extends StatelessWidget {
       );
     }
 
-    // greeting message widget
-    Widget _greeting() {
-      return Text(
-        '${greeting()}, Pengguna',
-        style: blackTextStyle.copyWith(
-          fontSize: 16,
-          fontWeight: semiBold,
-        ),
+    Widget _body() {
+      // greeting message widget
+      Widget _greeting() {
+        return Text(
+          '${greeting()}, Pengguna',
+          overflow: TextOverflow.ellipsis,
+          maxLines: 1,
+          style: blackTextStyle.copyWith(
+            fontSize: 16,
+            fontWeight: semiBold,
+          ),
+        );
+      }
+
+      // search bar widget
+      Widget _searchBar() {
+        return Row(
+          children: [
+            Container(
+              width: 250,
+              height: 50,
+              child: TextFormField(
+                controller: _searchController,
+                style: blackTextStyle.copyWith(
+                  fontSize: 12,
+                  decoration: TextDecoration.none,
+                ),
+                decoration: InputDecoration(
+                  prefixIcon: Icon(
+                    Icons.search,
+                    color: kGray2Color,
+                  ),
+                  prefixIconColor: kGrayColor,
+                  isDense: true,
+                  hintText: 'Cari Pekerjaan atau Posisi',
+                  hintStyle: gray2TextStyle.copyWith(
+                    fontSize: 12,
+                    fontWeight: light,
+                  ),
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(defaultRadius),
+                    borderSide: BorderSide(color: kPrimaryColor),
+                  ),
+                  focusedBorder: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(defaultRadius),
+                    borderSide: BorderSide(color: kPrimaryColor),
+                  ),
+                ),
+              ),
+            ),
+          ],
+        );
+      }
+
+      return Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          _greeting(),
+          const SizedBox(height: 5),
+          _searchBar(),
+        ],
       );
     }
 
@@ -68,12 +123,15 @@ class HomePage extends StatelessWidget {
               top: defaultMargin + 20,
               bottom: defaultMargin,
             ),
-            child: Column(
-              children: [
-                _header(),
-                SizedBox(height: defaultMargin - 10),
-                _greeting(),
-              ],
+            child: Expanded(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  _header(),
+                  SizedBox(height: defaultMargin),
+                  _body(),
+                ],
+              ),
             ),
           ),
         ),

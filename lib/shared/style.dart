@@ -5,6 +5,7 @@ Color kPrimaryColor = Color(0xFF14A800);
 Color kBlackColor = Color(0xFF000000);
 Color kWhiteColor = Color(0xFFFFFFFF);
 Color kGrayColor = Color(0xFFEEF2FC);
+Color kGray2Color = Color(0xFFC4C4C4);
 Color kGreenColor = Color(0xFF108F00);
 Color kTransparentColor = Colors.transparent;
 
@@ -12,6 +13,7 @@ TextStyle primaryTextStyle = GoogleFonts.poppins(color: kPrimaryColor);
 TextStyle blackTextStyle = GoogleFonts.poppins(color: kBlackColor);
 TextStyle whiteTextStyle = GoogleFonts.poppins(color: kWhiteColor);
 TextStyle grayTextStyle = GoogleFonts.poppins(color: kGrayColor);
+TextStyle gray2TextStyle = GoogleFonts.poppins(color: kGray2Color);
 
 double defaultMargin = 30.0;
 double defaultRadius = 10.0;

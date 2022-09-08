@@ -1,5 +1,6 @@
 import 'package:get/get.dart';
 import 'package:ghawe/pages/dashboard_page.dart';
+import 'package:ghawe/pages/detail_page.dart';
 import 'package:ghawe/pages/forgot-password_page.dart';
 import 'package:ghawe/pages/onboarding_page.dart';
 import 'package:ghawe/pages/sign-in_page.dart';
@@ -28,13 +29,20 @@ class PageRoutes {
       name: '/sign-up',
       page: () => SignUpPage(),
     ),
+    // Route for Forgot Password Page
     GetPage(
       name: '/forgot-password',
       page: () => ForgotPasswordPage(),
     ),
+    // Route for Dashboard Page
     GetPage(
       name: '/dashboard',
       page: () => DashboardPage(),
-    )
+    ),
+    // Route for Detail Job Page
+    GetPage(
+      name: '/detail-job',
+      page: () => DetailPage(),
+    ),
   ];
 }

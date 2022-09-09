@@ -1,5 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:ghawe/cubit/page_cubit.dart';
+import 'package:ghawe/pages/explore_page.dart';
 import 'package:ghawe/pages/home_page.dart';
+import 'package:ghawe/pages/my-application_page.dart';
+import 'package:ghawe/pages/profile_page.dart';
+import 'package:ghawe/pages/saved-job_page.dart';
+import 'package:ghawe/pages/widgets/custom_bottom_navigation_item.dart';
 import 'package:ghawe/shared/style.dart';
 
 class DashboardPage extends StatelessWidget {
@@ -7,10 +14,22 @@ class DashboardPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-
-    // list page for future
-    Widget _buildContent() {
-      return HomePage();
+    // list page in bottom nav bar
+    Widget _buildContent(int currentIndex) {
+      switch (currentIndex) {
+        case 0:
+          return HomePage();
+        case 1:
+          return SavedJobPage();
+        case 2:
+          return ExplorePage();
+        case 3:
+          return MyApplicationPage();
+        case 4:
+          return ProfilePage();
+        default:
+          return HomePage();
+      }
     }
 
     // custom widget for bottom navigation bar
@@ -33,25 +52,25 @@ class DashboardPage extends StatelessWidget {
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [
-              Image.asset(
-                'assets/icons/ic_home.png',
-                width: 24,
+              CustomBottomNavItem(
+                index: 0,
+                imgUrl: 'assets/icons/ic_home.png',
               ),
-              Image.asset(
-                'assets/icons/ic_favorite.png',
-                width: 24,
+              CustomBottomNavItem(
+                index: 1,
+                imgUrl: 'assets/icons/ic_favorite.png',
               ),
-              Image.asset(
-                'assets/icons/ic_explore.png',
-                width: 24,
+              CustomBottomNavItem(
+                index: 2,
+                imgUrl: 'assets/icons/ic_explore.png',
               ),
-              Image.asset(
-                'assets/icons/ic_status.png',
-                width: 24,
+              CustomBottomNavItem(
+                index: 3,
+                imgUrl: 'assets/icons/ic_status.png',
               ),
-              Image.asset(
-                'assets/icons/ic_profile.png',
-                width: 24,
+              CustomBottomNavItem(
+                index: 4,
+                imgUrl: 'assets/icons/ic_profile.png',
               ),
             ],
           ),
@@ -59,14 +78,18 @@ class DashboardPage extends StatelessWidget {
       );
     }
 
-    return Scaffold(
-      backgroundColor: kWhiteColor,
-      body: Stack(
-        children: [
-          _buildContent(),
-          _bottomNavBar(),
-        ],
-      ),
+    return BlocBuilder<PageCubit, int>(
+      builder: (context, currentIndex) {
+        return Scaffold(
+          backgroundColor: kWhiteColor,
+          body: Stack(
+            children: [
+              _buildContent(currentIndex),
+              _bottomNavBar(),
+            ],
+          ),
+        );
+      },
     );
   }
 }

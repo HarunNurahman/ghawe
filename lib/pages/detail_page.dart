@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:ghawe/pages/widgets/custom_button.dart';
 import 'package:ghawe/pages/widgets/job_info_item.dart';
 import 'package:ghawe/shared/style.dart';
 
@@ -70,7 +71,8 @@ class DetailPage extends StatelessWidget {
   }
 
   // body content widget
-  Widget _body() {
+  Widget _body(BuildContext context) {
+    // job info item widget
     Widget _jobInfo() {
       return Column(
         children: [
@@ -95,7 +97,7 @@ class DetailPage extends StatelessWidget {
               ),
               JobInfoItem(
                 iconUrl: Icons.location_on,
-                title: 'Daerah Istimewa Yogyakarta',
+                title: 'Jakarta Selatan',
               ),
             ],
           ),
@@ -103,10 +105,91 @@ class DetailPage extends StatelessWidget {
       );
     }
 
+    // description widget
+    Widget _description() {
+      return Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(
+            'Deskripsi Pekerjaan',
+            style: blackTextStyle.copyWith(
+              fontSize: 16,
+              fontWeight: semiBold,
+            ),
+          ),
+          Container(
+            width: double.infinity,
+            margin: const EdgeInsets.only(top: 8, bottom: 20),
+            padding: const EdgeInsets.all(16),
+            decoration: BoxDecoration(
+              color: kGrayColor,
+              borderRadius: BorderRadius.circular(defaultRadius + 5),
+            ),
+            child: Text(
+              'as a Mobile Developer, you will create quality code that easy to test and maintain for our mobile application. Your code will be used by millions of our customers.',
+              textAlign: TextAlign.justify,
+              style: blackTextStyle.copyWith(
+                fontSize: 11,
+                fontWeight: light,
+              ),
+            ),
+          ),
+        ],
+      );
+    }
+
+    // requirement widget
+    Widget _requirement(BuildContext context) {
+      return Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(
+            'Persyaratan',
+            style: blackTextStyle.copyWith(
+              fontSize: 16,
+              fontWeight: semiBold,
+            ),
+          ),
+          Container(
+            width: double.infinity,
+            margin: EdgeInsets.only(top: 8, bottom: defaultMargin),
+            padding: const EdgeInsets.all(16),
+            decoration: BoxDecoration(
+              color: kGrayColor,
+              borderRadius: BorderRadius.circular(defaultRadius + 5),
+            ),
+            child: Text(
+              '''Min. 2 year of experience in web application development using Flutter. Additional expertises need / Kebutuhan keahlian khusus:\n 
+1. Strong understanding in Dart programming language. 
+2. Strong understanding in State Management (BLoC). 
+3. Good understanding in working with local database (SQLite). Experience in Moor is a great plus. 
+4. Good understanding in API invoke. Experience in Dio is a great plus. 
+5. Good understanding about Clean Architecture. 
+6. Basic understanding in Agile and Scrum. 
+7. Self-motivated, can-do attitude and good communication skill.''',
+              style: blackTextStyle.copyWith(
+                fontSize: 11,
+                fontWeight: light,
+              ),
+            ),
+          ),
+        ],
+      );
+    }
+
+    // submit button widget
+    Widget _submitButton() {
+      return CustomButton(title: 'Lamar', onPressed: () {});
+    }
+
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         _jobInfo(),
+        SizedBox(height: defaultMargin),
+        _description(),
+        _requirement(context),
+        _submitButton(),
       ],
     );
   }
@@ -116,20 +199,22 @@ class DetailPage extends StatelessWidget {
     return Scaffold(
       backgroundColor: kWhiteColor,
       appBar: _appbar(),
-      body: Padding(
-        padding: EdgeInsets.only(
-          left: defaultMargin,
-          right: defaultMargin,
-          top: defaultMargin,
-          bottom: defaultMargin,
-        ),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            _header(),
-            SizedBox(height: defaultMargin),
-            _body(),
-          ],
+      body: SingleChildScrollView(
+        child: Padding(
+          padding: EdgeInsets.only(
+            left: defaultMargin,
+            right: defaultMargin,
+            top: defaultMargin,
+            bottom: defaultMargin,
+          ),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              _header(),
+              SizedBox(height: defaultMargin),
+              _body(context),
+            ],
+          ),
         ),
       ),
     );

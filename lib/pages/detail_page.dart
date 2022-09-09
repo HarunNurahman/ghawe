@@ -3,8 +3,15 @@ import 'package:ghawe/pages/widgets/custom_button.dart';
 import 'package:ghawe/pages/widgets/job_info_item.dart';
 import 'package:ghawe/shared/style.dart';
 
-class DetailPage extends StatelessWidget {
+class DetailPage extends StatefulWidget {
   const DetailPage({Key? key}) : super(key: key);
+
+  @override
+  State<DetailPage> createState() => _DetailPageState();
+}
+
+class _DetailPageState extends State<DetailPage> {
+  late bool isSaved = false;
 
   PreferredSizeWidget _appbar() {
     return AppBar(
@@ -22,12 +29,44 @@ class DetailPage extends StatelessWidget {
       actions: [
         Padding(
           padding: EdgeInsets.only(right: defaultMargin),
-          child: Icon(
-            Icons.bookmark_outline,
-            color: kPrimaryColor,
-            size: 24,
+          child: IconButton(
+            onPressed: () {
+              setState(() {
+                isSaved = !isSaved;
+                ScaffoldMessenger.of(context).showSnackBar(
+                  SnackBar(
+                    backgroundColor: kWhiteColor,
+                    behavior: SnackBarBehavior.floating,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(defaultRadius + 20),
+                    ),
+                    content: isSaved
+                        ? Text(
+                            'Pekerjaan Telah Disimpan',
+                            style: primaryTextStyle,
+                          )
+                        : Text(
+                            'Pekerjaan Batal Disimpan',
+                            style: primaryTextStyle.copyWith(
+                              color: Colors.red,
+                            ),
+                          ),
+                    duration: Duration(seconds: 2),
+                  ),
+                );
+              });
+            },
+            icon: isSaved
+                ? Icon(
+                    Icons.bookmark,
+                    color: kPrimaryColor,
+                  )
+                : Icon(
+                    Icons.bookmark_border,
+                    color: kPrimaryColor,
+                  ),
           ),
-        ),
+        )
       ],
     );
   }

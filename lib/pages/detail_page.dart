@@ -179,7 +179,10 @@ class DetailPage extends StatelessWidget {
 
     // submit button widget
     Widget _submitButton() {
-      return CustomButton(title: 'Lamar', onPressed: () {});
+      return CustomButton(
+        title: 'Lamar',
+        onPressed: () {},
+      );
     }
 
     return Column(
@@ -189,7 +192,7 @@ class DetailPage extends StatelessWidget {
         SizedBox(height: defaultMargin),
         _description(),
         _requirement(context),
-        _submitButton(),
+        _submitButton()
       ],
     );
   }

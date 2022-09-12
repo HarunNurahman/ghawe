@@ -103,20 +103,18 @@ class _RecentJobCardState extends State<RecentJobCard> {
                   ScaffoldMessenger.of(context).showSnackBar(
                     SnackBar(
                       backgroundColor: kWhiteColor,
-                      behavior: SnackBarBehavior.floating,
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(defaultRadius + 20),
-                      ),
                       content: isSaved
                           ? Text(
                               'Pekerjaan Telah Disimpan',
                               style: primaryTextStyle,
+                              textAlign: TextAlign.center,
                             )
                           : Text(
                               'Pekerjaan Batal Disimpan',
                               style: primaryTextStyle.copyWith(
                                 color: Colors.red,
                               ),
+                              textAlign: TextAlign.center,
                             ),
                       duration: Duration(seconds: 2),
                     ),

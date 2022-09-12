@@ -13,6 +13,7 @@ class DetailPage extends StatefulWidget {
 class _DetailPageState extends State<DetailPage> {
   late bool isSaved = false;
 
+  // app bar widget
   PreferredSizeWidget _appbar() {
     return AppBar(
       automaticallyImplyLeading: false,

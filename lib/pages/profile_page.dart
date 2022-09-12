@@ -155,8 +155,22 @@ class ProfilePage extends StatelessWidget {
                 color: kGrayColor,
                 borderRadius: BorderRadius.circular(defaultRadius),
               ),
-            )
+              child: Text(
+                'Lorem ipsum dolor sit amet, consectetur ad ipiscing elit,  sed do eiusmod tempor incididunt ut labore et dolore  magna aliqua.',
+                textAlign: TextAlign.justify,
+                style: blackTextStyle.copyWith(
+                  fontSize: 12,
+                  fontWeight: light,
+                ),
+              ),
+            ),
           ],
+        );
+      }
+
+      Widget _experience() {
+        return Column(
+          children: [],
         );
       }
 

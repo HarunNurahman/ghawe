@@ -18,7 +18,7 @@ class JobInfoItem extends StatelessWidget {
         children: [
           Icon(
             iconUrl,
-            size: 24,
+            size: 18,
             color: kPrimaryColor,
           ),
           const SizedBox(width: 6),
@@ -28,6 +28,7 @@ class JobInfoItem extends StatelessWidget {
               overflow: TextOverflow.ellipsis,
               style: blackTextStyle.copyWith(
                 fontWeight: semiBold,
+                fontSize: 12,
               ),
               maxLines: 2,
             ),

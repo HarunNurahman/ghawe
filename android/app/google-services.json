@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "1075130249784",
+    "project_id": "ghawe-53818",
+    "storage_bucket": "ghawe-53818.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1075130249784:android:90c97aef2ca8b5fff3accd",
+        "android_client_info": {
+          "package_name": "com.harunamanya.ghawe"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1075130249784-37kjdcjf3u0m2uj6g4s7dehnktarc16f.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCjzpv_7cs2-SfvZziu6_B4B_wvbRX_P8I"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1075130249784-37kjdcjf3u0m2uj6g4s7dehnktarc16f.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

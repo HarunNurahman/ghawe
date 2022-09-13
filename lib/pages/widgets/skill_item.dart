@@ -32,7 +32,7 @@ class SkillItem extends StatelessWidget {
             child: Text(
               title!,
               style: blackTextStyle.copyWith(
-                fontSize: 10,
+                fontSize: 12,
               ),
             ),
           ),

@@ -18,7 +18,7 @@ class ExperienceItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: const EdgeInsets.only(bottom: 10),
+      margin: const EdgeInsets.only(bottom: 16),
       child: Row(
         children: [
           Image.asset(
@@ -57,6 +57,7 @@ class ExperienceItem extends StatelessWidget {
             ),
           ),
         ],
+        
       ),
     );
   }

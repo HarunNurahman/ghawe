@@ -51,7 +51,7 @@ class ProfilePage extends StatelessWidget {
           children: [
             // name
             Text(
-              'Bambang Adhitya',
+              'Harun Nurahman',
               style: blackTextStyle.copyWith(
                 fontSize: 16,
                 fontWeight: semiBold,
@@ -200,6 +200,12 @@ class ProfilePage extends StatelessWidget {
                   imgUrl: 'assets/images/img_shopee.png',
                   jobTitle: 'Social Media Marketing (Intern)',
                   company: 'Shopee Indonesia',
+                  years: 1,
+                ),
+                ExperienceItem(
+                  imgUrl: 'assets/images/img_google.png',
+                  jobTitle: 'UI/UX Designer',
+                  company: 'Alphabet Inc.',
                   years: 1,
                 ),
               ],

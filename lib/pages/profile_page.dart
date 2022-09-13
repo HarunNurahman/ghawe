@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:ghawe/pages/widgets/connected_account_item.dart';
+import 'package:ghawe/pages/widgets/experience_item.dart';
+import 'package:ghawe/pages/widgets/skill_item.dart';
 import 'package:ghawe/shared/style.dart';
 
 class ProfilePage extends StatelessWidget {
@@ -146,10 +148,9 @@ class ProfilePage extends StatelessWidget {
                 fontWeight: medium,
               ),
             ),
-            const SizedBox(height: 8),
+            const SizedBox(height: 10),
             Container(
               width: double.infinity,
-              margin: EdgeInsets.only(bottom: defaultMargin - 14),
               padding: EdgeInsets.all(defaultMargin - 16),
               decoration: BoxDecoration(
                 color: kGrayColor,
@@ -168,9 +169,82 @@ class ProfilePage extends StatelessWidget {
         );
       }
 
+      // my experience widget
       Widget _experience() {
         return Column(
-          children: [],
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(
+              'Pengalaman Saya',
+              style: blackTextStyle.copyWith(
+                fontSize: 16,
+                fontWeight: medium,
+              ),
+            ),
+            const SizedBox(height: 10),
+            Column(
+              children: [
+                ExperienceItem(
+                  imgUrl: 'assets/images/img_tokopedia.png',
+                  jobTitle: 'Full Stack Mobile Developer',
+                  company: 'Tokopedia',
+                  years: 3,
+                ),
+                ExperienceItem(
+                  imgUrl: 'assets/images/img_gojek.png',
+                  jobTitle: 'Front End Mobile Developer',
+                  company: 'Gojek',
+                  years: 1,
+                ),
+                ExperienceItem(
+                  imgUrl: 'assets/images/img_shopee.png',
+                  jobTitle: 'Social Media Marketing (Intern)',
+                  company: 'Shopee Indonesia',
+                  years: 1,
+                ),
+              ],
+            ),
+          ],
+        );
+      }
+
+      // my skill widget
+      Widget _skill() {
+        return Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(
+              'Keahlian Saya',
+              style: blackTextStyle.copyWith(
+                fontSize: 16,
+                fontWeight: medium,
+              ),
+            ),
+            const SizedBox(height: 10),
+            SingleChildScrollView(
+              scrollDirection: Axis.horizontal,
+              child: Row(
+                children: [
+                  SkillItem(
+                    imgUrl: 'assets/images/img_flutter.png',
+                    title: 'Flutter',
+                  ),
+                  SkillItem(
+                    imgUrl: 'assets/images/img_figma.png',
+                    title: 'Figma',
+                  ),
+                  SkillItem(
+                    imgUrl: 'assets/images/img_laravel.png',
+                    title: 'Laravel',
+                  ),
+                  SkillItem(
+                    imgUrl: 'assets/images/img_postman.png',
+                    title: 'Postman',
+                  ),
+                ],
+              ),
+            )
+          ],
         );
       }
 
@@ -178,6 +252,10 @@ class ProfilePage extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           _aboutMe(),
+          SizedBox(height: defaultMargin),
+          _experience(),
+          SizedBox(height: defaultMargin),
+          _skill(),
         ],
       );
     }
@@ -199,6 +277,7 @@ class ProfilePage extends StatelessWidget {
                 _header(),
                 SizedBox(height: defaultMargin),
                 _body(),
+                SizedBox(height: defaultMargin + 30),
               ],
             ),
           ),

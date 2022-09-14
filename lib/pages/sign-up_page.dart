@@ -132,7 +132,7 @@ class SignUpPage extends StatelessWidget {
                   ],
                 ),
               );
-              Get.toNamed('/dashboard');
+              Get.offAndToNamed('/dashboard');
             } // IF Registration Failed
             else if (state is AuthFailed) {
               ScaffoldMessenger.of(context).showMaterialBanner(

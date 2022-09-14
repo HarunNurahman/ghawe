@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:ghawe/shared/style.dart';
@@ -16,7 +17,14 @@ class _SplashScreenPageState extends State<SplashScreenPage> {
   void initState() {
     Timer(
       const Duration(seconds: 3),
-      () => Get.offAndToNamed('/on-boarding'),
+      () {
+        User? user = FirebaseAuth.instance.currentUser;
+        if (user == null) {
+          Get.offAndToNamed('/on-boarding');
+        } else {
+          Get.offAllNamed('/dashboard');
+        }
+      },
     );
     super.initState();
   }

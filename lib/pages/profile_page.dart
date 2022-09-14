@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:get/get.dart';
+import 'package:ghawe/cubit/auth_cubit.dart';
 import 'package:ghawe/pages/widgets/connected_account_item.dart';
+import 'package:ghawe/pages/widgets/custom_button.dart';
 import 'package:ghawe/pages/widgets/experience_item.dart';
 import 'package:ghawe/pages/widgets/skill_item.dart';
 import 'package:ghawe/shared/style.dart';
@@ -254,6 +258,38 @@ class ProfilePage extends StatelessWidget {
         );
       }
 
+      // sign out button widget
+      Widget _signOut() {
+        return BlocConsumer<AuthCubit, AuthState>(
+          listener: (context, state) {
+            if (state is AuthFailed) {
+              ScaffoldMessenger.of(context).showSnackBar(
+                SnackBar(
+                  backgroundColor: Colors.red,
+                  content: Text(state.error),
+                ),
+              );
+            } else if (state is AuthInitial) {
+              Get.offAllNamed('/on-boarding');
+            }
+          },
+          builder: (context, state) {
+            if (state is AuthLoading) {
+              return Center(
+                child: CircularProgressIndicator(color: kPrimaryColor),
+              );
+            }
+
+            return CustomButton(
+              title: 'Sign Out',
+              onPressed: () {
+                context.read<AuthCubit>().signOut();
+              },
+            );
+          },
+        );
+      }
+
       return Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -262,6 +298,8 @@ class ProfilePage extends StatelessWidget {
           _experience(),
           SizedBox(height: defaultMargin),
           _skill(),
+          SizedBox(height: defaultMargin),
+          _signOut(),
         ],
       );
     }

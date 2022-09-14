@@ -1,6 +1,8 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/get.dart';
+import 'package:ghawe/cubit/auth_cubit.dart';
 import 'package:ghawe/pages/widgets/custom_button.dart';
 import 'package:ghawe/pages/widgets/custom_text_form_field.dart';
 import 'package:ghawe/shared/style.dart';
@@ -104,9 +106,81 @@ class SignUpPage extends StatelessWidget {
 
       // Sign up button widget
       Widget _signUpButton() {
-        return CustomButton(
-          title: 'Daftar',
-          onPressed: () => Get.toNamed('sign-in'),
+        return BlocConsumer<AuthCubit, AuthState>(
+          listener: (context, state) {
+            // IF Registration Success
+            if (state is AuthSuccess) {
+              ScaffoldMessenger.of(context).showMaterialBanner(
+                MaterialBanner(
+                  backgroundColor: kPrimaryColor,
+                  content: Text(
+                    'Akun Berhasil Terdaftar, Selamat Datang!',
+                    style: whiteTextStyle.copyWith(
+                      fontSize: 12,
+                      fontWeight: semiBold,
+                    ),
+                  ),
+                  actions: [
+                    TextButton(
+                      onPressed: () => ScaffoldMessenger.of(context)
+                          .hideCurrentMaterialBanner(),
+                      child: Text(
+                        'Dismiss',
+                        style: blackTextStyle.copyWith(),
+                      ),
+                    ),
+                  ],
+                ),
+              );
+              Get.toNamed('/dashboard');
+            } // IF Registration Failed
+            else if (state is AuthFailed) {
+              ScaffoldMessenger.of(context).showMaterialBanner(
+                MaterialBanner(
+                  backgroundColor: Colors.red,
+                  content: Text(
+                    'Akun Gagal Terdaftar : ${state.error}',
+                    style: whiteTextStyle.copyWith(
+                      fontSize: 12,
+                      fontWeight: medium,
+                    ),
+                  ),
+                  actions: [
+                    TextButton(
+                      onPressed: () => ScaffoldMessenger.of(context)
+                          .hideCurrentMaterialBanner(),
+                      child: Text(
+                        'Dismiss',
+                        style: blackTextStyle.copyWith(
+                          fontSize: 12,
+                          fontWeight: medium,
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              );
+            }
+          },
+          builder: (context, state) {
+            if (state is AuthLoading) {
+              return Center(
+                child: CircularProgressIndicator(
+                  color: kPrimaryColor,
+                ),
+              );
+            }
+
+            return CustomButton(
+              title: 'Daftar',
+              onPressed: () => context.read<AuthCubit>().signUp(
+                    name: _nameController.text,
+                    email: _emailController.text,
+                    password: _passwordController.text,
+                    phone: _phoneController.text,
+                  ),
+            );
+          },
         );
       }
 

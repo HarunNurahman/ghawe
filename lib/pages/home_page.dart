@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:ghawe/cubit/auth_cubit.dart';
 import 'package:ghawe/pages/widgets/recent_job_card.dart';
 import 'package:ghawe/pages/widgets/recommended_job_card.dart';
 import 'package:ghawe/shared/style.dart';
@@ -22,58 +24,58 @@ class HomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     // header widget
     Widget _header() {
-      // greeting message widget
-      Widget _greeting() {
-        return Expanded(
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(
-                '${greeting()},',
-                style: blackTextStyle.copyWith(
-                  fontSize: 16,
-                  fontWeight: medium,
+      return BlocBuilder<AuthCubit, AuthState>(
+        builder: (context, state) {
+          if (state is AuthSuccess) {
+            return Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                // greeting text
+                Expanded(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        '${greeting()},',
+                        style: blackTextStyle.copyWith(
+                          fontSize: 16,
+                          fontWeight: medium,
+                        ),
+                      ),
+                      // const SizedBox(height: 4),
+                      Text(
+                        state.userModel.name,
+                        overflow: TextOverflow.ellipsis,
+                        maxLines: 2,
+                        style: blackTextStyle.copyWith(
+                          fontSize: 20,
+                          fontWeight: semiBold,
+                        ),
+                      )
+                    ],
+                  ),
                 ),
-              ),
-              // const SizedBox(height: 4),
-              Text(
-                'Pengguna Baru',
-                overflow: TextOverflow.ellipsis,
-                maxLines: 2,
-                style: blackTextStyle.copyWith(
-                  fontSize: 20,
-                  fontWeight: semiBold,
-                ),
-              )
-            ],
-          ),
-        );
-      }
-
-      // profile picture widget
-      Widget _profilePic() {
-        return CircleAvatar(
-          radius: 36,
-          backgroundColor: kBlackColor,
-          child: CircleAvatar(
-            radius: 34,
-            backgroundColor: kWhiteColor,
-            child: const CircleAvatar(
-              radius: 32,
-              backgroundImage: AssetImage(
-                'assets/images/img_profile.png',
-              ),
-            ),
-          ),
-        );
-      }
-
-      return Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          _greeting(),
-          _profilePic(),
-        ],
+                // profile pic,
+                CircleAvatar(
+                  radius: 36,
+                  backgroundColor: kBlackColor,
+                  child: CircleAvatar(
+                    radius: 34,
+                    backgroundColor: kWhiteColor,
+                    child: const CircleAvatar(
+                      radius: 32,
+                      backgroundImage: AssetImage(
+                        'assets/images/img_profile.png',
+                      ),
+                    ),
+                  ),
+                )
+              ],
+            );
+          } else {
+            return const SizedBox();
+          }
+        },
       );
     }
 

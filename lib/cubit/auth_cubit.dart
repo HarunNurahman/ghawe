@@ -2,6 +2,7 @@ import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:ghawe/models/user_model.dart';
 import 'package:ghawe/services/auth_service.dart';
+import 'package:ghawe/services/user_service.dart';
 
 part 'auth_state.dart';
 
@@ -44,6 +45,15 @@ class AuthCubit extends Cubit<AuthState> {
           e.toString(),
         ),
       );
+    }
+  }
+
+  void getCurrentUser(String id) async {
+    try {
+      UserModel userModel = await UserService().getUserById(id);
+      emit(AuthSuccess(userModel));
+    } catch (e) {
+      emit(AuthFailed(e.toString()));
     }
   }
 }

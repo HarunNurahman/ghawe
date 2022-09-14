@@ -2,7 +2,9 @@ import 'dart:async';
 
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/get.dart';
+import 'package:ghawe/cubit/auth_cubit.dart';
 import 'package:ghawe/shared/style.dart';
 
 class SplashScreenPage extends StatefulWidget {
@@ -22,6 +24,7 @@ class _SplashScreenPageState extends State<SplashScreenPage> {
         if (user == null) {
           Get.offAndToNamed('/on-boarding');
         } else {
+          context.read<AuthCubit>().getCurrentUser(user.uid);
           Get.offAllNamed('/dashboard');
         }
       },

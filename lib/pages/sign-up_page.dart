@@ -31,7 +31,7 @@ class SignUpPage extends StatelessWidget {
             ),
             const SizedBox(height: 4),
             Text(
-              'Ayo Daftar Dulu Ya!',
+              'Ayo Daftarkan Diri Kamu!',
               style: blackTextStyle.copyWith(
                 fontSize: 14,
                 fontWeight: light,

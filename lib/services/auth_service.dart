@@ -5,6 +5,26 @@ import 'package:ghawe/services/user_service.dart';
 class AuthService {
   FirebaseAuth auth = FirebaseAuth.instance;
 
+  Future<UserModel> signIn({
+    required String email,
+    required String password,
+  }) async {
+    try {
+      UserCredential userCredential = await auth.signInWithEmailAndPassword(
+        email: email,
+        password: password,
+      );
+
+      UserModel userModel = await UserService().getUserById(
+        userCredential.user!.uid,
+      );
+
+      return userModel;
+    } catch (e) {
+      rethrow;
+    }
+  }
+
   Future<UserModel> signUp({
     required String name,
     required String email,
@@ -12,13 +32,13 @@ class AuthService {
     required String phone,
   }) async {
     try {
-      UserCredential user = await auth.createUserWithEmailAndPassword(
+      UserCredential userCredential = await auth.createUserWithEmailAndPassword(
         email: email,
         password: password,
       );
 
       UserModel userModel = UserModel(
-        id: user.user!.uid,
+        id: userCredential.user!.uid,
         email: email,
         name: name,
         phone: phone,

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/get.dart';
 import 'package:ghawe/cubit/auth_cubit.dart';
+import 'package:ghawe/cubit/page_cubit.dart';
 import 'package:ghawe/pages/widgets/connected_account_item.dart';
 import 'package:ghawe/pages/widgets/custom_button.dart';
 import 'package:ghawe/pages/widgets/experience_item.dart';
@@ -270,7 +271,8 @@ class ProfilePage extends StatelessWidget {
                 ),
               );
             } else if (state is AuthInitial) {
-              Get.offAllNamed('/on-boarding');
+              context.read<PageCubit>().setPage(0);
+              Get.offAllNamed('/sign-in');
             }
           },
           builder: (context, state) {

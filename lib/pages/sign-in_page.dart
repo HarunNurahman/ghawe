@@ -1,8 +1,8 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/get.dart';
-import 'package:ghawe/pages/empty-state_page.dart';
-import 'package:ghawe/pages/forgot-password_page.dart';
+import 'package:ghawe/cubit/auth_cubit.dart';
 import 'package:ghawe/pages/widgets/custom_button.dart';
 import 'package:ghawe/pages/widgets/custom_text_form_field.dart';
 import 'package:ghawe/shared/style.dart';
@@ -98,11 +98,38 @@ class SignInPage extends StatelessWidget {
 
       // Sign in button widget
       Widget _signInButton() {
-        return CustomButton(
-          title: 'Masuk',
-          onPressed: (() {
-            Get.toNamed('/dashboard');
-          }),
+        return BlocConsumer<AuthCubit, AuthState>(
+          listener: (context, state) {
+            if (state is AuthSuccess) {
+              Get.toNamed('/dashboard');
+            } else if (state is AuthFailed) {
+              ScaffoldMessenger.of(context).showSnackBar(
+                SnackBar(
+                  content: Text(state.error),
+                  backgroundColor: Colors.red,
+                ),
+              );
+            }
+          },
+          builder: (context, state) {
+            if (state is AuthLoading) {
+              return Center(
+                child: CircularProgressIndicator(
+                  color: kPrimaryColor,
+                ),
+              );
+            }
+
+            return CustomButton(
+              title: 'Masuk',
+              onPressed: () {
+                context.read<AuthCubit>().signIn(
+                      email: _emailController.text,
+                      password: _passwordController.text,
+                    );
+              },
+            );
+          },
         );
       }
 

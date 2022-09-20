@@ -93,7 +93,7 @@ class _DetailPageState extends State<DetailPage> {
                 image: NetworkImage(
                   '${widget.jobsModel.imgUrl}',
                 ),
-                fit: BoxFit.cover,
+                fit: BoxFit.contain,
               ),
             ),
           ),
@@ -103,6 +103,7 @@ class _DetailPageState extends State<DetailPage> {
             widget.jobsModel.jobTitle!,
             textAlign: TextAlign.center,
             overflow: TextOverflow.ellipsis,
+            maxLines: 2,
             style: blackTextStyle.copyWith(
               fontSize: 20,
               fontWeight: semiBold,

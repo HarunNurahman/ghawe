@@ -2,6 +2,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:ghawe/cubit/auth_cubit.dart';
+import 'package:ghawe/cubit/jobs_cubit.dart';
 import 'package:ghawe/cubit/page_cubit.dart';
 import 'package:ghawe/services/route.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -23,6 +24,9 @@ class MyApp extends StatelessWidget {
         ),
         BlocProvider(
           create: (context) => AuthCubit(),
+        ),
+        BlocProvider(
+          create: (context) => JobsCubit(),
         )
       ],
       child: GetMaterialApp(

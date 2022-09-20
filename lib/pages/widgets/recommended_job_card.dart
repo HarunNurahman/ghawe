@@ -1,25 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:ghawe/models/jobs_model.dart';
 import 'package:ghawe/shared/style.dart';
 import 'package:intl/intl.dart';
 
 class RecommendedJobCard extends StatelessWidget {
-  final String? jobTitle;
-  final String? company;
-  final String? imgUrl;
-  final String? location;
-  final int? salary;
-  final String? experience;
-  final String? lastUpdate;
+  final JobsModel jobsModel;
+  final String lastUpdate;
 
-  const RecommendedJobCard({
+  const RecommendedJobCard(
+    this.jobsModel, {
     Key? key,
-    required this.jobTitle,
-    required this.company,
-    required this.imgUrl,
-    required this.location,
-    this.salary = 0,
-    required this.experience,
     this.lastUpdate = 'Hari Ini',
   }) : super(key: key);
 
@@ -51,7 +42,7 @@ class RecommendedJobCard extends StatelessWidget {
                       defaultRadius,
                     ),
                   ),
-                  child: Image.asset(imgUrl!),
+                  child: Image.network('${jobsModel.imgUrl}'),
                 ),
                 const SizedBox(width: 8),
                 // title (company name, job title)
@@ -61,7 +52,7 @@ class RecommendedJobCard extends StatelessWidget {
                     children: [
                       // job title
                       Text(
-                        jobTitle!,
+                        jobsModel.jobTitle!,
                         maxLines: 1,
                         overflow: TextOverflow.ellipsis,
                         style: whiteTextStyle.copyWith(
@@ -71,7 +62,7 @@ class RecommendedJobCard extends StatelessWidget {
                       const SizedBox(height: 3),
                       // company
                       Text(
-                        company!,
+                        jobsModel.company!,
                         style: whiteTextStyle.copyWith(
                           fontSize: 12,
                         ),
@@ -92,7 +83,7 @@ class RecommendedJobCard extends StatelessWidget {
                 ),
                 const SizedBox(width: 6),
                 Text(
-                  location!,
+                  jobsModel.location!,
                   style: whiteTextStyle.copyWith(
                     fontSize: 12,
                     fontWeight: medium,
@@ -116,7 +107,7 @@ class RecommendedJobCard extends StatelessWidget {
                     symbol: 'IDR ',
                     decimalDigits: 0,
                   ).format(
-                    salary,
+                    jobsModel.salary,
                   ),
                   style: whiteTextStyle.copyWith(
                     fontSize: 12,
@@ -136,7 +127,7 @@ class RecommendedJobCard extends StatelessWidget {
                 ),
                 const SizedBox(width: 6),
                 Text(
-                  experience!,
+                  jobsModel.experience!,
                   style: whiteTextStyle.copyWith(
                     fontSize: 12,
                     fontWeight: medium,
@@ -190,7 +181,7 @@ class RecommendedJobCard extends StatelessWidget {
                     ),
                     const SizedBox(width: 6),
                     Text(
-                      lastUpdate!,
+                      lastUpdate,
                       style: whiteTextStyle.copyWith(
                         fontSize: 10,
                         fontWeight: light,

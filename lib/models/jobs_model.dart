@@ -1,16 +1,16 @@
 import 'package:equatable/equatable.dart';
 
 class JobsModel extends Equatable {
-  final String id;
-  final String company;
-  final String experience;
-  final String imgUrl;
-  final String jobDesc;
-  final String jobRequirement;
-  final String jobTitle;
-  final String jobType;
-  final String location;
-  final int salary;
+  final String? id;
+  final String? company;
+  final String? experience;
+  final String? imgUrl;
+  final String? jobDesc;
+  final String? jobRequirement;
+  final String? jobTitle;
+  final String? jobType;
+  final String? location;
+  final int? salary;
 
   JobsModel({
     required this.id,

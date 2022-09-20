@@ -1,12 +1,25 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:ghawe/cubit/auth_cubit.dart';
+import 'package:ghawe/cubit/jobs_cubit.dart';
+import 'package:ghawe/models/jobs_model.dart';
 import 'package:ghawe/pages/widgets/recent_job_card.dart';
 import 'package:ghawe/pages/widgets/recommended_job_card.dart';
 import 'package:ghawe/shared/style.dart';
 
-class HomePage extends StatelessWidget {
+class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
+
+  @override
+  State<HomePage> createState() => _HomePageState();
+}
+
+class _HomePageState extends State<HomePage> {
+  @override
+  void initState() {
+    context.read<JobsCubit>().fetchJob();
+    super.initState();
+  }
 
   // Greeting timer
   String greeting() {
@@ -127,7 +140,7 @@ class HomePage extends StatelessWidget {
       }
 
       // Recommended job widget
-      Widget _recommendedJob() {
+      Widget _recommendedJob(List<JobsModel> jobList) {
         return Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -156,30 +169,9 @@ class HomePage extends StatelessWidget {
             SingleChildScrollView(
               scrollDirection: Axis.horizontal,
               child: Row(
-                children: const [
-                  RecommendedJobCard(
-                    jobTitle: 'Mobile Developer',
-                    company: 'Gojek',
-                    salary: 3000000,
-                    imgUrl: 'assets/images/img_gojek.png',
-                    location: 'Jakarta Selatan',
-                    experience: '1 - 3 Tahun',
-                  ),
-                  RecommendedJobCard(
-                    jobTitle: 'Social Media Marketing',
-                    company: 'Tokopedia',
-                    imgUrl: 'assets/images/img_tokopedia.png',
-                    location: 'Jakarta',
-                    experience: '3 Tahun',
-                  ),
-                  RecommendedJobCard(
-                    jobTitle: 'Internship Program',
-                    company: 'Alphabet Inc.',
-                    imgUrl: 'assets/images/img_google.png',
-                    location: 'Tangerang',
-                    experience: '< 1 Tahun',
-                  )
-                ],
+                children: jobList.map((JobsModel jobsModel) {
+                  return RecommendedJobCard(jobsModel);
+                }).toList(),
               ),
             )
           ],
@@ -187,7 +179,7 @@ class HomePage extends StatelessWidget {
       }
 
       // New job list widget
-      Widget _recentPostedJob() {
+      Widget _recentPostedJob(List<JobsModel> jobsList) {
         return Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -212,56 +204,75 @@ class HomePage extends StatelessWidget {
               ],
             ),
             const SizedBox(height: 8),
-            RecentJobCard(
-              jobtitle: 'Social Media Marketing',
-              company: 'Shopee Indonesia',
-              location: 'Jakarta Pusat',
-              imgUrl: 'assets/images/img_shopee.png',
-            ),
-            RecentJobCard(
-              jobtitle: 'DevOps Engineer',
-              company: 'Grab',
-              location: 'Singapore',
-              imgUrl: 'assets/images/img_grab2.png',
-            ),
+            Column(
+              children: jobsList.map((JobsModel jobsModel) {
+                return RecentJobCard(jobsModel);
+              }).toList(),
+            )
           ],
         );
       }
 
-      return Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          _upcomingEvent(),
-          SizedBox(height: defaultMargin),
-          _recommendedJob(),
-          SizedBox(height: defaultMargin),
-          _recentPostedJob(),
-        ],
+      return BlocConsumer<JobsCubit, JobsState>(
+        listener: (context, state) {
+          if (state is JobsFailed) {
+            ScaffoldMessenger.of(context).showSnackBar(
+              SnackBar(
+                content: Text(state.error),
+                backgroundColor: Colors.red,
+              ),
+            );
+          }
+        },
+        builder: (context, state) {
+          if (state is JobsSuccess) {
+            return Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                _upcomingEvent(),
+                SizedBox(height: defaultMargin),
+                _recommendedJob(state.jobs),
+                SizedBox(height: defaultMargin),
+                _recentPostedJob(state.jobs),
+              ],
+            );
+          }
+          return Center(
+            child: CircularProgressIndicator(
+              color: kPrimaryColor,
+            ),
+          );
+        },
       );
     }
 
     return Scaffold(
       backgroundColor: kWhiteColor,
-      body: SafeArea(
-        child: SingleChildScrollView(
-          child: Padding(
-            padding: EdgeInsets.only(
-              left: defaultMargin,
-              right: defaultMargin,
-              top: defaultMargin + 20,
-              bottom: defaultMargin,
+      body: BlocConsumer<JobsCubit, JobsState>(
+        listener: (context, state) {},
+        builder: (context, state) {
+          return SafeArea(
+            child: SingleChildScrollView(
+              child: Padding(
+                padding: EdgeInsets.only(
+                  left: defaultMargin,
+                  right: defaultMargin,
+                  top: defaultMargin + 20,
+                  bottom: defaultMargin,
+                ),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    _header(),
+                    SizedBox(height: defaultMargin),
+                    _body(),
+                    SizedBox(height: defaultMargin),
+                  ],
+                ),
+              ),
             ),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                _header(),
-                SizedBox(height: defaultMargin),
-                _body(),
-                SizedBox(height: defaultMargin),
-              ],
-            ),
-          ),
-        ),
+          );
+        },
       ),
     );
   }

@@ -1,19 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:ghawe/models/jobs_model.dart';
 import 'package:ghawe/shared/style.dart';
 
 class RecentJobCard extends StatefulWidget {
-  final String? jobtitle;
-  final String? company;
-  final String? location;
-  final String? imgUrl;
+  final JobsModel jobsModel;
 
-  const RecentJobCard({
+  const RecentJobCard(
+    this.jobsModel, {
     Key? key,
-    required this.jobtitle,
-    required this.company,
-    required this.location,
-    required this.imgUrl,
   }) : super(key: key);
 
   @override
@@ -49,8 +44,9 @@ class _RecentJobCardState extends State<RecentJobCard> {
                   defaultRadius,
                 ),
               ),
-              child: Image.asset(widget.imgUrl!),
+              child: Image.network('${widget.jobsModel.imgUrl}'),
             ),
+            const SizedBox(width: 6),
             // content (job title, company, location)
             Expanded(
               // job title
@@ -58,7 +54,7 @@ class _RecentJobCardState extends State<RecentJobCard> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    widget.jobtitle!,
+                    widget.jobsModel.jobTitle!,
                     overflow: TextOverflow.ellipsis,
                     maxLines: 1,
                     style: blackTextStyle.copyWith(
@@ -68,7 +64,7 @@ class _RecentJobCardState extends State<RecentJobCard> {
                   ),
                   // company
                   Text(
-                    widget.company!,
+                    widget.jobsModel.company!,
                     style: blackTextStyle.copyWith(
                       fontSize: 10,
                     ),
@@ -82,7 +78,7 @@ class _RecentJobCardState extends State<RecentJobCard> {
                         color: kPrimaryColor,
                       ),
                       Text(
-                        widget.location!,
+                        widget.jobsModel.location!,
                         style: blackTextStyle.copyWith(
                           fontSize: 10,
                           fontWeight: medium,

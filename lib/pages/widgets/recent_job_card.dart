@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 import 'package:ghawe/models/jobs_model.dart';
+import 'package:ghawe/pages/detail_page.dart';
 import 'package:ghawe/shared/style.dart';
 
 class RecentJobCard extends StatefulWidget {
@@ -21,7 +21,14 @@ class _RecentJobCardState extends State<RecentJobCard> {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () => Get.toNamed('/detail-job'),
+      onTap: () {
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) => DetailPage(widget.jobsModel),
+          ),
+        );
+      },
       child: Container(
         width: double.infinity,
         padding: const EdgeInsets.all(16),

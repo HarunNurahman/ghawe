@@ -39,10 +39,6 @@ class PageRoutes {
       name: '/dashboard',
       page: () => DashboardPage(),
     ),
-    // Route for Detail Job Page
-    GetPage(
-      name: '/detail-job',
-      page: () => DetailPage(),
-    ),
+    
   ];
 }

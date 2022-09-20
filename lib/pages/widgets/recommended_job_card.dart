@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:ghawe/models/jobs_model.dart';
+import 'package:ghawe/pages/detail_page.dart';
 import 'package:ghawe/shared/style.dart';
 import 'package:intl/intl.dart';
 
@@ -17,7 +18,14 @@ class RecommendedJobCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () => Get.toNamed('/detail-job'),
+      onTap: () {
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) => DetailPage(jobsModel),
+          ),
+        );
+      },
       child: Container(
         width: 250,
         margin: const EdgeInsets.only(right: 16),

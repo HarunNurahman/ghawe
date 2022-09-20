@@ -1,10 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:ghawe/models/jobs_model.dart';
 import 'package:ghawe/pages/widgets/custom_button.dart';
 import 'package:ghawe/pages/widgets/job_info_item.dart';
 import 'package:ghawe/shared/style.dart';
+import 'package:intl/intl.dart';
 
 class DetailPage extends StatefulWidget {
-  const DetailPage({Key? key}) : super(key: key);
+  final JobsModel jobsModel;
+
+  const DetailPage(this.jobsModel, {Key? key}) : super(key: key);
 
   @override
   State<DetailPage> createState() => _DetailPageState();
@@ -16,7 +21,13 @@ class _DetailPageState extends State<DetailPage> {
   // app bar widget
   PreferredSizeWidget _appbar() {
     return AppBar(
-      automaticallyImplyLeading: false,
+      leading: IconButton(
+        onPressed: () => Get.back(),
+        icon: Icon(
+          Icons.arrow_back_ios,
+          color: kPrimaryColor,
+        ),
+      ),
       backgroundColor: kWhiteColor,
       centerTitle: true,
       elevation: 0,
@@ -28,44 +39,40 @@ class _DetailPageState extends State<DetailPage> {
         ),
       ),
       actions: [
-        Padding(
-          padding: EdgeInsets.only(right: defaultMargin),
-          child: IconButton(
-            onPressed: () {
-              setState(() {
-                isSaved = !isSaved;
-                ScaffoldMessenger.of(context).showSnackBar(
-                  SnackBar(
-                    backgroundColor: kWhiteColor,
-                    
-                    content: isSaved
-                        ? Text(
-                            'Pekerjaan Telah Disimpan',
-                            style: primaryTextStyle,
-                            textAlign: TextAlign.center,
-                          )
-                        : Text(
-                            'Pekerjaan Batal Disimpan',
-                            style: primaryTextStyle.copyWith(
-                              color: Colors.red,
-                            ),
-                            textAlign: TextAlign.center,
+        IconButton(
+          onPressed: () {
+            setState(() {
+              isSaved = !isSaved;
+              ScaffoldMessenger.of(context).showSnackBar(
+                SnackBar(
+                  backgroundColor: kWhiteColor,
+                  content: isSaved
+                      ? Text(
+                          'Pekerjaan Telah Disimpan',
+                          style: primaryTextStyle,
+                          textAlign: TextAlign.center,
+                        )
+                      : Text(
+                          'Pekerjaan Batal Disimpan',
+                          style: primaryTextStyle.copyWith(
+                            color: Colors.red,
                           ),
-                    duration: Duration(seconds: 2),
-                  ),
-                );
-              });
-            },
-            icon: isSaved
-                ? Icon(
-                    Icons.bookmark,
-                    color: kPrimaryColor,
-                  )
-                : Icon(
-                    Icons.bookmark_border,
-                    color: kPrimaryColor,
-                  ),
-          ),
+                          textAlign: TextAlign.center,
+                        ),
+                  duration: Duration(seconds: 2),
+                ),
+              );
+            });
+          },
+          icon: isSaved
+              ? Icon(
+                  Icons.bookmark,
+                  color: kPrimaryColor,
+                )
+              : Icon(
+                  Icons.bookmark_border,
+                  color: kPrimaryColor,
+                ),
         )
       ],
     );
@@ -77,21 +84,23 @@ class _DetailPageState extends State<DetailPage> {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
+          // company logo
           Container(
             width: 100,
             height: 100,
-            decoration: const BoxDecoration(
+            decoration: BoxDecoration(
               image: DecorationImage(
-                image: AssetImage(
-                  'assets/images/img_tokopedia.png',
+                image: NetworkImage(
+                  '${widget.jobsModel.imgUrl}',
                 ),
                 fit: BoxFit.cover,
               ),
             ),
           ),
           const SizedBox(height: 20),
+          // job title
           Text(
-            'Mobile Developer',
+            widget.jobsModel.jobTitle!,
             textAlign: TextAlign.center,
             overflow: TextOverflow.ellipsis,
             style: blackTextStyle.copyWith(
@@ -99,8 +108,9 @@ class _DetailPageState extends State<DetailPage> {
               fontWeight: semiBold,
             ),
           ),
+          // company
           Text(
-            'Tokopedia',
+            widget.jobsModel.company!,
             textAlign: TextAlign.center,
             style: blackTextStyle,
           )
@@ -117,26 +127,34 @@ class _DetailPageState extends State<DetailPage> {
         children: [
           Row(
             children: [
+              // salary
               JobInfoItem(
                 iconUrl: Icons.attach_money_outlined,
-                title: 'IDR 3.500.000',
+                title: NumberFormat.currency(
+                  locale: 'id',
+                  symbol: 'IDR ',
+                  decimalDigits: 0,
+                ).format(widget.jobsModel.salary),
               ),
+              // job type
               JobInfoItem(
                 iconUrl: Icons.access_time,
-                title: 'Full-Time',
+                title: widget.jobsModel.jobType!,
               ),
             ],
           ),
           const SizedBox(height: 10),
           Row(
             children: [
+              // experience
               JobInfoItem(
                 iconUrl: Icons.work,
-                title: '1 - 3 Tahun',
+                title: widget.jobsModel.experience!,
               ),
+              // location
               JobInfoItem(
                 iconUrl: Icons.location_on,
-                title: 'Jakarta Selatan',
+                title: widget.jobsModel.location!,
               ),
             ],
           ),
@@ -165,7 +183,7 @@ class _DetailPageState extends State<DetailPage> {
               borderRadius: BorderRadius.circular(defaultRadius + 5),
             ),
             child: Text(
-              'as a Mobile Developer, you will create quality code that easy to test and maintain for our mobile application. Your code will be used by millions of our customers.',
+              '''${widget.jobsModel.jobDesc}''',
               textAlign: TextAlign.justify,
               style: blackTextStyle.copyWith(
                 fontSize: 11,
@@ -198,14 +216,7 @@ class _DetailPageState extends State<DetailPage> {
               borderRadius: BorderRadius.circular(defaultRadius + 5),
             ),
             child: Text(
-              '''Min. 2 year of experience in web application development using Flutter. Additional expertises need / Kebutuhan keahlian khusus:\n 
-1. Strong understanding in Dart programming language. 
-2. Strong understanding in State Management (BLoC). 
-3. Good understanding in working with local database (SQLite). Experience in Moor is a great plus. 
-4. Good understanding in API invoke. Experience in Dio is a great plus. 
-5. Good understanding about Clean Architecture. 
-6. Basic understanding in Agile and Scrum. 
-7. Self-motivated, can-do attitude and good communication skill.''',
+              '''${widget.jobsModel.jobRequirement}''',
               style: blackTextStyle.copyWith(
                 fontSize: 11,
                 fontWeight: light,

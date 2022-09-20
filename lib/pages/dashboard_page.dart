@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:ghawe/cubit/page_cubit.dart';
+import 'package:ghawe/models/user_model.dart';
 import 'package:ghawe/pages/explore_page.dart';
 import 'package:ghawe/pages/home_page.dart';
 import 'package:ghawe/pages/my-application_page.dart';

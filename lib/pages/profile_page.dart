@@ -33,108 +33,107 @@ class ProfilePage extends StatelessWidget {
 
     // header widget (circle avatar, user information (name, phone, email, location, connected account))
     Widget _header() {
-      // profile image widget
-      Widget _profileImg() {
-        return CircleAvatar(
-          backgroundColor: kPrimaryColor,
-          radius: 72,
-          child: CircleAvatar(
-            backgroundColor: kWhiteColor,
-            radius: 68,
-            child: CircleAvatar(
-              radius: 64,
-              backgroundImage: AssetImage('assets/images/img_profile.png'),
-            ),
-          ),
-        );
-      }
-
-      // user information widget (name, skill, phone, location)
-      Widget _userInfo() {
-        return Column(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            // name
-            Text(
-              'Harun Nurahman',
-              style: blackTextStyle.copyWith(
-                fontSize: 16,
-                fontWeight: semiBold,
-              ),
-            ),
-            const SizedBox(height: 4),
-            // skillset
-            Text(
-              'Flutter Developer',
-              style: blackTextStyle.copyWith(
-                fontWeight: light,
-              ),
-            ),
-            SizedBox(height: defaultMargin - 10),
-            // base location
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Icon(
-                  Icons.location_on,
-                  size: 16,
-                  color: kPrimaryColor,
-                ),
-                const SizedBox(width: 6),
-                Text(
-                  'Kota Bandung, Jawa Barat',
-                  style: blackTextStyle.copyWith(
-                    fontSize: 12,
-                    fontWeight: medium,
-                  ),
-                )
-              ],
-            ),
-            const SizedBox(height: 6),
-            // phone information
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Icon(
-                  Icons.phone,
-                  size: 16,
-                  color: kPrimaryColor,
-                ),
-                const SizedBox(width: 6),
-                Text(
-                  '+62 8888 1234 5678',
-                  style: blackTextStyle.copyWith(
-                    fontSize: 12,
-                    fontWeight: medium,
-                  ),
-                )
-              ],
-            ),
-          ],
-        );
-      }
-
-      // connected account widget (ex. linkedin, github, etc.)
-      Widget _connectedAccount() {
-        return Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            ConnectedAccount(imgUrl: 'assets/images/img_whatsapp.png'),
-            ConnectedAccount(imgUrl: 'assets/images/img_linkedin.png'),
-            ConnectedAccount(imgUrl: 'assets/images/img_github.png'),
-          ],
-        );
-      }
-
       return Center(
-        child: Column(
-          children: [
-            _profileImg(),
-            SizedBox(height: defaultMargin),
-            _userInfo(),
-            SizedBox(height: defaultMargin),
-            _connectedAccount(),
-          ],
+        child: BlocBuilder<AuthCubit, AuthState>(
+          builder: (context, state) {
+            if (state is AuthSuccess) {
+              return Column(
+                children: [
+                  // profile image
+                  CircleAvatar(
+                    backgroundColor: kPrimaryColor,
+                    radius: 72,
+                    child: CircleAvatar(
+                      backgroundColor: kWhiteColor,
+                      radius: 68,
+                      child: CircleAvatar(
+                        radius: 64,
+                        backgroundImage:
+                            AssetImage('assets/images/img_profile.png'),
+                      ),
+                    ),
+                  ),
+                  SizedBox(height: defaultMargin),
+                  // user info
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      // name
+                      Text(
+                        state.userModel.name!,
+                        style: blackTextStyle.copyWith(
+                          fontSize: 16,
+                          fontWeight: semiBold,
+                        ),
+                      ),
+                      const SizedBox(height: 4),
+                      // skillset
+                      Text(
+                        'Flutter Developer',
+                        style: blackTextStyle.copyWith(
+                          fontWeight: light,
+                        ),
+                      ),
+                      SizedBox(height: defaultMargin - 10),
+                      // base location
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Icon(
+                            Icons.location_on,
+                            size: 16,
+                            color: kPrimaryColor,
+                          ),
+                          const SizedBox(width: 6),
+                          Text(
+                            'Kota Bandung, Jawa Barat',
+                            style: blackTextStyle.copyWith(
+                              fontSize: 12,
+                              fontWeight: medium,
+                            ),
+                          )
+                        ],
+                      ),
+                      const SizedBox(height: 6),
+                      // phone information
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Icon(
+                            Icons.phone,
+                            size: 16,
+                            color: kPrimaryColor,
+                          ),
+                          const SizedBox(width: 6),
+                          Text(
+                            state.userModel.phone!,
+                            style: blackTextStyle.copyWith(
+                              fontSize: 12,
+                              fontWeight: medium,
+                            ),
+                          )
+                        ],
+                      ),
+                    ],
+                  ),
+                  SizedBox(height: defaultMargin),
+                  // connected account
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      ConnectedAccount(
+                          imgUrl: 'assets/images/img_whatsapp.png'),
+                      ConnectedAccount(
+                          imgUrl: 'assets/images/img_linkedin.png'),
+                      ConnectedAccount(imgUrl: 'assets/images/img_github.png'),
+                    ],
+                  ),
+                ],
+              );
+            } else {
+              return SizedBox();
+            }
+          },
         ),
       );
     }

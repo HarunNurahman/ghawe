@@ -57,7 +57,7 @@ class _HomePageState extends State<HomePage> {
                       ),
                       // const SizedBox(height: 4),
                       Text(
-                        state.userModel.name,
+                        state.userModel.name!,
                         overflow: TextOverflow.ellipsis,
                         maxLines: 2,
                         style: blackTextStyle.copyWith(

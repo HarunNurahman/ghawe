@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:get/get.dart';
 import 'package:ghawe/cubit/auth_cubit.dart';
 import 'package:ghawe/cubit/jobs_cubit.dart';
 import 'package:ghawe/models/jobs_model.dart';
+import 'package:ghawe/pages/explore_page.dart';
 import 'package:ghawe/pages/widgets/recent_job_card.dart';
 import 'package:ghawe/pages/widgets/recommended_job_card.dart';
 import 'package:ghawe/shared/style.dart';
@@ -110,12 +112,15 @@ class _HomePageState extends State<HomePage> {
                     fontWeight: semiBold,
                   ),
                 ),
-                Text(
-                  'Lihat Semua',
-                  style: primaryTextStyle.copyWith(
-                    fontSize: 10,
-                    fontWeight: light,
-                    decoration: TextDecoration.underline,
+                GestureDetector(
+                  onTap: () => Get.to(() => ExplorePage()),
+                  child: Text(
+                    'Lihat Semua',
+                    style: primaryTextStyle.copyWith(
+                      fontSize: 10,
+                      fontWeight: light,
+                      decoration: TextDecoration.underline,
+                    ),
                   ),
                 )
               ],
@@ -155,12 +160,15 @@ class _HomePageState extends State<HomePage> {
                     fontWeight: semiBold,
                   ),
                 ),
-                Text(
-                  'Lihat Semua',
-                  style: primaryTextStyle.copyWith(
-                    fontSize: 10,
-                    fontWeight: light,
-                    decoration: TextDecoration.underline,
+                GestureDetector(
+                  onTap: () => Get.to(() => ExplorePage()),
+                  child: Text(
+                    'Lihat Semua',
+                    style: primaryTextStyle.copyWith(
+                      fontSize: 10,
+                      fontWeight: light,
+                      decoration: TextDecoration.underline,
+                    ),
                   ),
                 ),
               ],
@@ -194,12 +202,15 @@ class _HomePageState extends State<HomePage> {
                     fontWeight: semiBold,
                   ),
                 ),
-                Text(
-                  'Lihat Semua',
-                  style: primaryTextStyle.copyWith(
-                    fontSize: 10,
-                    fontWeight: light,
-                    decoration: TextDecoration.underline,
+                GestureDetector(
+                  onTap: () => Get.to(() => ExplorePage()),
+                  child: Text(
+                    'Lihat Semua',
+                    style: primaryTextStyle.copyWith(
+                      fontSize: 10,
+                      fontWeight: light,
+                      decoration: TextDecoration.underline,
+                    ),
                   ),
                 ),
               ],

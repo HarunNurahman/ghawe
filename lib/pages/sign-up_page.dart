@@ -158,7 +158,10 @@ class SignUpPage extends StatelessWidget {
                           .hideCurrentMaterialBanner(),
                       child: Text(
                         'Dismiss',
-                        style: blackTextStyle.copyWith(),
+                        style: blackTextStyle.copyWith(
+                          fontSize: 12,
+                          fontWeight: light,
+                        ),
                       ),
                     ),
                   ],

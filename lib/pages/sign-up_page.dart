@@ -91,7 +91,7 @@ class SignUpPage extends StatelessWidget {
           children: [
             CustomTextFormField(
               title: 'Alamat',
-              hintText: 'Alamat Lengkap',
+              hintText: 'Masukkan Alamat Anda',
               controller: _locationController,
               inputType: TextInputType.number,
             ),
@@ -101,10 +101,28 @@ class SignUpPage extends StatelessWidget {
 
       // Email text field widget
       Widget _emailTextField() {
-        return CustomTextFormField(
-          title: 'Email',
-          hintText: 'Masukkan Email Anda',
-          controller: _emailController,
+        return Column(
+          children: [
+            CustomTextFormField(
+              title: 'Email',
+              hintText: 'Masukkan Email Anda',
+              controller: _emailController,
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.end,
+              children: [
+                Text(
+                  'Contoh: user@email.com',
+                  style: blackTextStyle.copyWith(
+                    fontSize: 10,
+                    fontWeight: light,
+                    decoration: TextDecoration.underline,
+                    color: kBlackColor.withOpacity(0.5),
+                  ),
+                )
+              ],
+            )
+          ],
         );
       }
 
@@ -303,7 +321,6 @@ class SignUpPage extends StatelessWidget {
           _locationTextField(),
           SizedBox(height: defaultMargin - 14),
           _emailTextField(),
-          SizedBox(height: defaultMargin - 14),
           _passwordTextField(),
           SizedBox(height: defaultMargin),
           _signUpButton(),

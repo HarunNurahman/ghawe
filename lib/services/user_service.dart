@@ -11,6 +11,9 @@ class UserService {
         'name': userModel.name,
         'email': userModel.email,
         'phone': userModel.phone,
+        'imgUrl': userModel.imgUrl,
+        'skill': userModel.skill,
+        'location': userModel.location,
       });
     } catch (e) {
       rethrow;
@@ -25,6 +28,9 @@ class UserService {
         email: snapshot['email'],
         name: snapshot['name'],
         phone: snapshot['phone'],
+        location: snapshot['location'],
+        imgUrl: snapshot['imgUrl'],
+        skill: snapshot['skill'],
       );
     } catch (e) {
       rethrow;

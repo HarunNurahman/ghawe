@@ -30,6 +30,7 @@ class AuthService {
     required String email,
     required String password,
     required String phone,
+    required String location,
   }) async {
     try {
       UserCredential userCredential = await auth.createUserWithEmailAndPassword(
@@ -42,6 +43,7 @@ class AuthService {
         email: email,
         name: name,
         phone: phone,
+        location: location,
       );
 
       await UserService().setUser(userModel);

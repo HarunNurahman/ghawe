@@ -14,6 +14,7 @@ class SignUpPage extends StatelessWidget {
   final TextEditingController _passwordController = TextEditingController();
   final TextEditingController _nameController = TextEditingController();
   final TextEditingController _phoneController = TextEditingController();
+  final TextEditingController _locationController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -81,6 +82,19 @@ class SignUpPage extends StatelessWidget {
                 )
               ],
             )
+          ],
+        );
+      }
+
+      Widget _locationTextField() {
+        return Column(
+          children: [
+            CustomTextFormField(
+              title: 'Alamat',
+              hintText: 'Alamat Lengkap',
+              controller: _locationController,
+              inputType: TextInputType.number,
+            ),
           ],
         );
       }
@@ -177,6 +191,7 @@ class SignUpPage extends StatelessWidget {
                     name: _nameController.text,
                     email: _emailController.text,
                     password: _passwordController.text,
+                    location: _locationController.text,
                     phone: _phoneController.text,
                   ),
             );
@@ -285,6 +300,8 @@ class SignUpPage extends StatelessWidget {
           _nameTextField(),
           SizedBox(height: defaultMargin - 14),
           _phoneTextField(),
+          _locationTextField(),
+          SizedBox(height: defaultMargin - 14),
           _emailTextField(),
           SizedBox(height: defaultMargin - 14),
           _passwordTextField(),

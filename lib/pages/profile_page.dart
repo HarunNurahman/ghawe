@@ -49,7 +49,8 @@ class ProfilePage extends StatelessWidget {
                       child: CircleAvatar(
                         radius: 64,
                         backgroundImage:
-                            AssetImage('assets/images/img_profile.png'),
+                            AssetImage('assets/images/img_office-worker.png'),
+                        backgroundColor: kWhiteColor,
                       ),
                     ),
                   ),
@@ -86,7 +87,7 @@ class ProfilePage extends StatelessWidget {
                           ),
                           const SizedBox(width: 6),
                           Text(
-                            'Kota Bandung, Jawa Barat',
+                            state.userModel.location!,
                             style: blackTextStyle.copyWith(
                               fontSize: 12,
                               fontWeight: medium,

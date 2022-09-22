@@ -90,7 +90,7 @@ class ProfilePage extends StatelessWidget {
                             state.userModel.location!,
                             style: blackTextStyle.copyWith(
                               fontSize: 12,
-                              fontWeight: medium,
+                              fontWeight: semiBold,
                             ),
                           )
                         ],
@@ -110,7 +110,7 @@ class ProfilePage extends StatelessWidget {
                             state.userModel.phone!,
                             style: blackTextStyle.copyWith(
                               fontSize: 12,
-                              fontWeight: medium,
+                              fontWeight: semiBold,
                             ),
                           )
                         ],
@@ -264,7 +264,6 @@ class ProfilePage extends StatelessWidget {
         return CustomButton(
           title: 'Ubah Profil',
           onPressed: () {},
-          color: const Color(0xFF0048A8),
         );
       }
 
@@ -296,6 +295,7 @@ class ProfilePage extends StatelessWidget {
               onPressed: () {
                 context.read<AuthCubit>().signOut();
               },
+              color: Color(0xFFA80014),
             );
           },
         );

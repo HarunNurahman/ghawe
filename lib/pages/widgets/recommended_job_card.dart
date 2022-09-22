@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 import 'package:ghawe/models/jobs_model.dart';
 import 'package:ghawe/pages/detail_page.dart';
 import 'package:ghawe/shared/style.dart';

@@ -49,7 +49,7 @@ class ProfilePage extends StatelessWidget {
                       child: CircleAvatar(
                         radius: 64,
                         backgroundImage:
-                            AssetImage('assets/images/img_office-worker.png'),
+                            AssetImage('assets/images/img_office-worker.jpg'),
                         backgroundColor: kWhiteColor,
                       ),
                     ),
@@ -259,6 +259,15 @@ class ProfilePage extends StatelessWidget {
         );
       }
 
+      // edit profile button
+      Widget _editProfile() {
+        return CustomButton(
+          title: 'Ubah Profil',
+          onPressed: () {},
+          color: const Color(0xFF0048A8),
+        );
+      }
+
       // sign out button widget
       Widget _signOut() {
         return BlocConsumer<AuthCubit, AuthState>(
@@ -283,7 +292,7 @@ class ProfilePage extends StatelessWidget {
             }
 
             return CustomButton(
-              title: 'Sign Out',
+              title: 'Keluar',
               onPressed: () {
                 context.read<AuthCubit>().signOut();
               },
@@ -301,6 +310,8 @@ class ProfilePage extends StatelessWidget {
           SizedBox(height: defaultMargin),
           _skill(),
           SizedBox(height: defaultMargin),
+          _editProfile(),
+          const SizedBox(height: 10),
           _signOut(),
         ],
       );

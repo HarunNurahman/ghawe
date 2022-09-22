@@ -4,11 +4,13 @@ import 'package:ghawe/shared/style.dart';
 class CustomButton extends StatelessWidget {
   final String? title;
   final Function() onPressed;
+  final Color color;
 
   const CustomButton({
     Key? key,
     required this.title,
     required this.onPressed,
+    this.color = const Color(0xFF14A800),
   }) : super(key: key);
 
   @override
@@ -18,7 +20,7 @@ class CustomButton extends StatelessWidget {
       height: 50,
       child: ElevatedButton(
         style: ElevatedButton.styleFrom(
-          primary: kPrimaryColor,
+          primary: color,
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(defaultRadius + 20),
           ),

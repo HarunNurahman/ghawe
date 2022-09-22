@@ -1,6 +1,5 @@
 import 'package:get/get.dart';
 import 'package:ghawe/pages/dashboard_page.dart';
-import 'package:ghawe/pages/detail_page.dart';
 import 'package:ghawe/pages/forgot-password_page.dart';
 import 'package:ghawe/pages/onboarding_page.dart';
 import 'package:ghawe/pages/sign-in_page.dart';

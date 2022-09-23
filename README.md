@@ -1,16 +1,22 @@
-# ghawe
+# Ghawe!
 
-A new Flutter project.
+Ghawe is a job seeker application created using Flutter as front-end and Firestore as back-end
 
-## Getting Started
+## Features
 
-This project is a starting point for a Flutter application.
+- Recommended Jobs
+- Recently Added Jobs
+- Explore Jobs
+- Toggle to Save or Bookmark Jobs You Want to Apply Later
+- Profile Page
 
-A few resources to get you started if this is your first Flutter project:
+## Dependencies
+- [`bloc`](https://pub.dev/packages/bloc) - A predictable state management library that helps implement the BLoC (Business Logic Component) design pattern.
+- [`cloud_firestore`](https://pub.dev/packages/cloud_firestore) - A Flutter plugin to use the Cloud Firestore API.
+- [`firebase_auth`](https://pub.dev/packages/firebase_auth) - Flutter plugin for Firebase Auth.
+- [`firebase_core`](https://pub.dev/packages/firebase_core) - Flutter plugin for Firebase Core.
+- [`flutter_bloc`](https://pub.dev/packages/flutter_bloc) - Flutter Widgets that make it easy to implement the BLoC (Business Logic Component) design pattern.
+- [`get`](https://pub.dev/packages/get) - Route or navigation management.
+- [`google_fonts`](https://pub.dev/packages/google_fonts) - Google Fonts package.
+- [`intl`](https://pub.dev/packages/intl) - Number or currency formatting.
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.

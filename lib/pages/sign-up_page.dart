@@ -93,7 +93,7 @@ class SignUpPage extends StatelessWidget {
               title: 'Alamat',
               hintText: 'Masukkan Alamat Anda',
               controller: _locationController,
-              inputType: TextInputType.number,
+              inputType: TextInputType.text,
             ),
           ],
         );
@@ -142,29 +142,16 @@ class SignUpPage extends StatelessWidget {
           listener: (context, state) {
             // IF Registration Success
             if (state is AuthSuccess) {
-              ScaffoldMessenger.of(context).showMaterialBanner(
-                MaterialBanner(
-                  backgroundColor: kPrimaryColor,
+              
+              ScaffoldMessenger.of(context).showSnackBar(
+                SnackBar(
                   content: Text(
                     'Akun Berhasil Terdaftar, Selamat Datang!',
-                    style: whiteTextStyle.copyWith(
+                    style: primaryTextStyle.copyWith(
                       fontSize: 12,
                       fontWeight: semiBold,
                     ),
                   ),
-                  actions: [
-                    TextButton(
-                      onPressed: () => ScaffoldMessenger.of(context)
-                          .hideCurrentMaterialBanner(),
-                      child: Text(
-                        'Dismiss',
-                        style: blackTextStyle.copyWith(
-                          fontSize: 12,
-                          fontWeight: light,
-                        ),
-                      ),
-                    ),
-                  ],
                 ),
               );
               Get.offAndToNamed('/dashboard');

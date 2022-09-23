@@ -1,7 +1,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.ghawe">
+    <uses-permission android:name="android.permission.INTERNET"/>
    <application
-        android:label="ghawe"
+        android:label="Ghawe"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
         <activity

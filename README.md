@@ -2,6 +2,9 @@
 
 Ghawe is a job seeker application created using Flutter as front-end and Firestore as back-end
 
+## Demo App
+https://user-images.githubusercontent.com/16952129/191920027-d543456c-ffeb-4544-b09d-d1195c4c0d46.mp4
+
 ## Features
 
 - Recommended Jobs

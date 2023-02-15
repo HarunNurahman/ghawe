@@ -101,7 +101,7 @@ class SignInPage extends StatelessWidget {
         return BlocConsumer<AuthCubit, AuthState>(
           listener: (context, state) {
             if (state is AuthSuccess) {
-              Get.toNamed('/dashboard');
+              Get.offAllNamed('/dashboard');
             } else if (state is AuthFailed) {
               ScaffoldMessenger.of(context).showSnackBar(
                 SnackBar(
